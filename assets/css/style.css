@@ -1,0 +1,63 @@
+
+/* Common properties */
+
+:root {
+    --white: #fff;
+    --black: #1E1E1E;
+}
+
+body {
+    font-family: 'Product Sans';
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--white);
+    line-height: 19px;
+    background-color: var(--black);
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Fonts */
+
+/* Product Sans regular */
+@font-face {
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/ProductSans-Regular.woff") format("woff"); 
+    }
+
+/* Product Sans regular */
+@font-face {
+    font-family: 'Product Sans';
+    font-style: bold;
+    font-weight: 700;
+    src: url("../fonts/Product-Sans-Bold.woff") format("woff"); 
+    }
+
+

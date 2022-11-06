@@ -17,146 +17,170 @@
     <symbol id="priority" viewBox="0 0 11 16">
         <path d="M9.6862 7.0933H7.49745V1.9933C7.49745 0.803301 6.85286 0.562468 6.06661 1.45497L5.49995 2.09955L0.70453 7.55372C0.0457803 8.29747 0.32203 8.90663 1.3137 8.90663H3.50245V14.0066C3.50245 15.1966 4.14703 15.4375 4.93328 14.545L5.49995 13.9004L10.2954 8.44622C10.9541 7.70247 10.6779 7.0933 9.6862 7.0933Z"/>
     </symbol>
+
+    <symbol id="backBotton" viewBox="0 0 20 20">
+        <path d="M14.19 0H5.81C2.17 0 0 2.17 0 5.81V14.18C0 17.83 2.17 20 5.81 20H14.18C17.82 20 19.99 17.83 19.99 14.19V5.81C20 2.17 17.83 0 14.19 0ZM11.79 13C12.08 13.29 12.08 13.77 11.79 14.06C11.64 14.21 11.45 14.28 11.26 14.28C11.07 14.28 10.88 14.21 10.73 14.06L7.2 10.53C6.91 10.24 6.91 9.76 7.2 9.47L10.73 5.94C11.02 5.65 11.5 5.65 11.79 5.94C12.08 6.23 12.08 6.71 11.79 7L8.79 10L11.79 13Z"/>
+    </symbol>
 </svg>
 <!-- Svg sprites -->
 
 <body>
     <header class="header">
         <div class="container">
-            <div class="header__inner">
-                <h1 class="header__title">Note</h1>
+                
+                <div class="note__inner">
+                    <h1 class="header__title">Note</h1>
+                </div>
+                
+                <div class="newNote__inner visible">
+                    
+                    <div class="backBotton">
+                        <svg class="backBottonImg">
+                            <use xlink:href="#backBotton"></use>
+                        </svg>
+                    </div>
+
+                    <h1 class="header__title">New note</h1>
+                </div>
+                
                 <!-- <a class="settings__button">
                     <svg class="settingsSvg">
                     <use xlink:href="#settings"></use>
                     </svg>
                 </a> -->
-            </div> <!-- header__inner -->
         </div> <!-- container -->
     </header>
 
-<div class="dateSort">
-    <div class="container">
-        <div class="dateSort__inner">
-            <button class="dateSort__button active">
-                <span class="button__text active">Today</span>
-            </button>
-        
-            <button class="dateSort__button">
-                <span class="button__text">Tomorrow</span>
-            </button>
-        
-            <button class="dateSort__button">
-                <span class="button__text">All</span>
-            </button>
-        </div>
-    </div><!-- container -->
-</div><!-- dateSort -->
+<div class="pageWrapper">
 
-<div class="taskList">
-    <div class="container">
-        
-        <div class="taskList__inner">
-            <h2 class="taskList__title">
-                Backlogs
-            </h2>
+    <div class="mainWrapper">   
 
-            <div class="taskList__task">
+        <div class="dateSort">
+        <div class="container">
+            <div class="dateSort__inner">
+                <button class="dateSort__button active">
+                    <span class="button__text active">Today</span>
+                </button>
                 
-                <div class="task__item red">
-                    <h3 class="task__text">Homework</h3>
-                    
-                    <div class="priority__inner">
-                        <svg class="priority__image active">
-                            <use xlink:href="#priority"></use>
-                            </svg>
-                        <svg class="priority__image active">
-                            <use xlink:href="#priority"></use>
-                            </svg>
-                        <svg class="priority__image">
-                            <use xlink:href="#priority"></use>
-                            </svg>
-                    </div>
-                </div><!-- task__item -->
-
-                <div class="task__item yellow">
-                    <h3 class="task__text">Other work</h3>
-                    
-                    <div class="priority__inner">
-                        <svg class="priority__image active">
-                            <use xlink:href="#priority"></use>
-                            </svg>
-                        <svg class="priority__image active">
-                            <use xlink:href="#priority"></use>
-                            </svg>
-                        <svg class="priority__image">
-                            <use xlink:href="#priority"></use>
-                            </svg>
-                    </div>
-                </div><!-- task__item -->
-
-                <div class="task__item blue">
-                    <h3 class="task__text">Homework debts</h3>
-                    
-                    <div class="priority__inner">
-                        <svg class="priority__image active">
-                            <use xlink:href="#priority"></use>
-                            </svg>
-                        <svg class="priority__image active">
-                            <use xlink:href="#priority"></use>
-                            </svg>
-                        <svg class="priority__image">
-                            <use xlink:href="#priority"></use>
-                            </svg>
-                    </div>
-                </div><!-- task__item -->
-
-            </div><!-- taskList__tasks -->
-
-        </div><!-- taskList__inner -->
-
-    </div><!-- container -->
-</div><!-- taskList -->
-
-<!-- taskListComplete -->
-<div class="taskListComplete">
-    <div class="container">
-        <div class="taskList__inner complete">
-            <h2 class="taskList__title">
-                Completed tasks
-            </h2>
-        <div class="taskList__task complete">
-            <div class="task__item red complete">
-                <h3 class="task__text">Homework</h3>
+                <button class="dateSort__button">
+                    <span class="button__text">Tomorrow</span>
+                </button>
                 
-                <div class="priority__inner">
-                    <svg class="priority__image active">
-                        <use xlink:href="#priority"></use>
-                        </svg>
-                    <svg class="priority__image active">
-                        <use xlink:href="#priority"></use>
-                        </svg>
-                    <svg class="priority__image">
-                        <use xlink:href="#priority"></use>
-                        </svg>
+                <button class="dateSort__button">
+                    <span class="button__text">All</span>
+                </button>
                 </div>
-            </div><!-- task__item -->
-        </div><!--taskList__task complete-->
-        </div><!-- taskList__inner complete-->
-            <button class="task__item cleanButton">
-                Clean up the room
-            </button>
-    </div><!-- container -->   
-</div><!-- taskListComplete -->
+            </div><!-- container -->
+        </div><!-- dateSort -->
 
-<!-- footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer__inner">
-            <button class="newTaskButton">New</button>
-        </div><!-- footer__inner -->
-    </div><!-- container -->
-</footer>
+        <div class="taskList">
+            <div class="container">
+                
+                <div class="taskList__inner">
+                    <h2 class="taskList__title">
+                        Backlogs
+                    </h2>
 
+                    <div class="taskList__task">
+                        
+                        <div class="task__item red">
+                            <h3 class="task__text">Homework</h3>
+                            
+                            <div class="priority__inner">
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                            </div>
+                        </div><!-- task__item -->
+
+                        <div class="task__item yellow">
+                            <h3 class="task__text">Other work</h3>
+                            
+                            <div class="priority__inner">
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                            </div>
+                        </div><!-- task__item -->
+
+                        <div class="task__item blue">
+                            <h3 class="task__text">Homework debts</h3>
+                            
+                            <div class="priority__inner">
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                            </div>
+                        </div><!-- task__item -->
+
+                    </div><!-- taskList__tasks -->
+
+                </div><!-- taskList__inner -->
+
+            </div><!-- container -->
+        </div><!-- taskList -->
+
+        <!-- taskListComplete -->
+        <div class="taskListComplete">
+            <div class="container">
+                <div class="taskList__inner complete">
+                    <h2 class="taskList__title">
+                        Completed tasks
+                    </h2>
+                <div class="taskList__task complete">
+                    <div class="task__item red complete">
+                        <h3 class="task__text">Homework</h3>
+                        
+                        <div class="priority__inner">
+                            <svg class="priority__image active">
+                                <use xlink:href="#priority"></use>
+                                </svg>
+                            <svg class="priority__image active">
+                                <use xlink:href="#priority"></use>
+                                </svg>
+                            <svg class="priority__image">
+                                <use xlink:href="#priority"></use>
+                                </svg>
+                        </div>
+                    </div><!-- task__item -->
+                </div><!--taskList__task complete-->
+                </div><!-- taskList__inner complete-->
+                    <button class="task__item cleanButton">
+                        Clean up the room
+                    </button>
+            </div><!-- container -->   
+        </div><!-- taskListComplete -->
+
+    </div><!--mainWrapper-->
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <button class="newTaskButton">New</button>
+            </div><!-- footer__inner -->
+        </div><!-- container -->
+    </footer>
+
+</div><!--pageWrapper-->
 
 </body>
 </html>

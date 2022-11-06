@@ -3,8 +3,8 @@
 
 :root {
     --white: #fff;
-    --black: #1E1E1E;
-    --blackLight: #181818;
+    --black: #181818;
+    --blackLight: #1E1E1E;
     --blue: #78ACD5;
     --red: #FF2460;
     --yellow: #FCF302;
@@ -18,7 +18,7 @@ body {
     font-size: 16px;
     color: var(--white);
     line-height: 19px;
-    background-color: var(--black, #1E1E1E);
+    background-color: var(--black, #181818);
     margin: 0;
 
     overflow-x: hidden;
@@ -61,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 20.5px 0;
 }
 
-.settings__button {
+/* .settings__button {
     display: block;
     text-decoration: none;
     position: absolute;
@@ -80,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 18.34px;
     height: 20px;
     fill: var(--blue);
-}
+} */
 
 
 /* dateSort */
@@ -128,6 +128,95 @@ h1, h2, h3, h4, h5, h6 {
 
 .button__text.active {
     color: var(--black);
+}
+
+/* taskList*/
+
+.taskList__inner {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.taskList__title {
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--white);
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 20px 0 10px 0;
+}
+
+
+/* datesort__inner */
+
+.task__item {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 50px;
+    background-color: var(--blackLight);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin: 10px 0;
+}
+
+.task__item.red::before {
+    background-color: var(--red);
+}
+.task__item.yellow::before {
+    background-color: var(--yellow);
+}
+.task__item.blue::before {
+    background-color: var(--blue);
+}
+
+
+
+.task__item::before {
+    content: "";
+    display: block;
+    width: 2px;
+    height: 70%;
+    position: absolute;
+    left: 15px;
+}
+.task__text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    margin-left: 27px;
+
+}
+
+
+/* priority */
+
+.priority__inner {
+    margin: 0 18.35px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 57px;
+}
+
+.priority__image {
+    display: block;
+    width: 10.31px;
+    height: 14.17px;
+    fill: var(--white);
+    fill-opacity: 0.1;
+    cursor: pointer;
+}
+
+.priority__image.active {
+    fill: var(--blue);
+    fill-opacity: 1;
+}
+
+.priority__image:hover {
+    fill: var(--blue);
+    fill-opacity: 1;
 }
 
 

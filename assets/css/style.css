@@ -244,6 +244,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* footer */
 
+.footer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .footer__inner {
     display: flex;
     justify-content: center;

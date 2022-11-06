@@ -7,6 +7,28 @@
     <title>MINI todo huper12345</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
+<!-- Svg sprites -->
+<svg display="none">
+    <symbol id="settings" viewBox="0 0 20 20">
+        <path d="M16.94 3.42L11.77 0.430002C10.78 -0.139998 9.22996 -0.139998 8.23996 0.430002L3.01996 3.44C0.949956 4.84 0.829956 5.05 0.829956 7.28V12.71C0.829956 14.94 0.949956 15.16 3.05996 16.58L8.22996 19.57C8.72996 19.86 9.36996 20 9.99996 20C10.63 20 11.27 19.86 11.76 19.57L16.98 16.56C19.05 15.16 19.17 14.95 19.17 12.72V7.28C19.17 5.05 19.05 4.84 16.94 3.42ZM9.99996 13.25C8.20996 13.25 6.74996 11.79 6.74996 10C6.74996 8.21 8.20996 6.75 9.99996 6.75C11.79 6.75 13.25 8.21 13.25 10C13.25 11.79 11.79 13.25 9.99996 13.25Z"/>
+    </symbol>
+</svg>
+<!-- Svg sprites -->
+
 <body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <h1 class="header__title">Note</h1>
+                <a class="button">
+                    <svg class="settingsSvg">
+                    <use xlink:href="#settings"></use>
+                    </svg>
+                </a>
+            </div> <!-- header__inner -->
+        </div> <!-- container -->
+    </header>
 </body>
+
 </html>

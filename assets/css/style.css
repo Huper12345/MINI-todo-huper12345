@@ -4,6 +4,11 @@
 :root {
     --white: #fff;
     --black: #1E1E1E;
+    --blue: #78ACD5;
+    --red: #FF2460;
+    --yellow: #FCF302;
+    
+    --hex-side: 15px;
 }
 
 body {
@@ -12,8 +17,10 @@ body {
     font-size: 16px;
     color: var(--white);
     line-height: 19px;
-    background-color: var(--black);
+    background-color: var(--black, #1E1E1E);
     margin: 0;
+
+    overflow-x: hidden;
 }
 
 * {
@@ -29,11 +36,45 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
+.container {
+    width: 100%;
+    max-width: 856px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
 
+/* header */
 
+.header__inner {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
 
+.header__title {
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 24px;
+    line-height: 29px;
+    margin: 20.5px 0;
+}
 
+.button {
+    display: block;
+    text-decoration: none;
+    position: absolute;
+    right: 17.83px;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
+.settingsSvg {
+    display: block;
+    width: 18.34px;
+    height: 20px;
+    fill: var(--blue);
+}
 
 
 
@@ -50,6 +91,7 @@ h1, h2, h3, h4, h5, h6 {
     font-style: normal;
     font-weight: 400;
     src: url("../fonts/ProductSans-Regular.woff") format("woff"); 
+    font-display: swap;
     }
 
 /* Product Sans regular */
@@ -57,7 +99,8 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Product Sans';
     font-style: bold;
     font-weight: 700;
-    src: url("../fonts/Product-Sans-Bold.woff") format("woff"); 
+    src: url("../fonts/Product-Sans-Bold.woff") format("woff");
+    font-display: swap; 
     }
 
 

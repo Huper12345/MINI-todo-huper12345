@@ -9,7 +9,8 @@
     --red: #FF2460;
     --yellow: #FCF302;
     --green: #00613a;
-    
+    --blueLight: rgba(78, 223, 252, 1);
+
     --hex-side: 15px;
 }
 
@@ -224,7 +225,60 @@ h1, h2, h3, h4, h5, h6 {
     fill-opacity: 1;
 }
 
+/* Complete tasks block */
 
+.task__item.cleanButton {
+    border: 0;
+    color: var(--white);
+    width: 100%;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    transition: 0.1s;
+}
+
+.task__item.cleanButton:hover {
+    background-color: var(--blue);
+}
+
+/* footer */
+
+.footer__inner {
+    display: flex;
+    justify-content: center;
+}
+
+.newTaskButton {
+    border: 0;
+    min-width: 122px;
+    min-height: 54px;
+    border-radius: 10px;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    transition: 0.1s;
+    color: var(--black);
+
+    margin: 42px;
+    
+    background:
+    radial-gradient(80.74% 163.82% at -1.23% -17.59%, #5AF8FE 0%, rgba(235, 81, 158, 0.25) 100%),
+    radial-gradient(49.18% 100.93% at 77.87% 111.11%, rgba(137, 59, 254, 0.85) 0%, rgba(128, 187, 219, 0.2125) 100%),
+    radial-gradient(60.25% 122.24% at 103.28% -41.67%, #FDC2B0 0%, rgba(235, 81, 158, 0.25) 100%);
+
+    transition: 0.3s;
+}
+
+.newTaskButton:hover {
+    background:
+    radial-gradient(80.74% 163.82% at -1.23% -17.59%, #b128ec 0%, rgba(118, 38, 180, 0.25) 100%),
+    radial-gradient(49.18% 100.93% at 77.87% 111.11%, rgba(59, 150, 254, 0.85) 0%, rgba(216, 58, 41, 0.213) 100%),
+    radial-gradient(60.25% 122.24% at 103.28% -41.67%, #1bd8bc 0%, rgba(235, 145, 81, 0.25) 100%);
+
+    color: var(--white);
+}
 
 /* Fonts */
 

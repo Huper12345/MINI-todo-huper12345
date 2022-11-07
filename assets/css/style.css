@@ -203,6 +203,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .taskList__title.newTask {
     font-weight: 700;
+    text-transform: none;
 }
 
 
@@ -263,6 +264,10 @@ h1, h2, h3, h4, h5, h6 {
     min-width: 57px;
 }
 
+.priority__inner--Radio {
+    margin: 0 70px 0 20px;
+}
+
 .priority__image {
     display: block;
     width: 10.31px;
@@ -314,6 +319,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .newTaskButton {
+    display: none;
     border: 0;
     min-width: 122px;
     min-height: 54px;
@@ -342,6 +348,10 @@ h1, h2, h3, h4, h5, h6 {
     radial-gradient(60.25% 122.24% at 103.28% -41.67%, #1bd8bc 0%, rgba(235, 145, 81, 0.25) 100%);
 
     color: var(--white);
+}
+
+.newTaskButton.visible {
+    display: block;
 }
 
 /* input */
@@ -382,6 +392,81 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--white);
 }
 
+/* Input radio style */
+
+.priority__radio[type="radio"]:checked, 
+.priority__radio[type="radio"]:not(:checked) 
+{
+    position: absolute;
+    left: -9999px;
+}
+
+
+.priority__radio[type="radio"]:checked + label, 
+.priority__radio[type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    line-height: 20px;
+    cursor: pointer;
+    margin-left: 13px;
+}
+
+/* Colors Radio */
+.priority__radio[type="radio"]:checked + label:before, 
+.priority__radio[type="radio"]:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--blue);
+}
+
+.priority__radio.yellow[type="radio"]:checked + label:before, 
+.priority__radio.yellow[type="radio"]:not(:checked) + label:before {
+    background-color: var(--yellow); 
+}
+
+.priority__radio.red[type="radio"]:checked + label:before, 
+.priority__radio.red[type="radio"]:not(:checked) + label:before {
+    background-color: var(--red); 
+}
+
+/* Colors Radio */
+
+.priority__radio[type="radio"]:checked + label:before, 
+.priority__radio[type="radio"]:not(:checked) + label:before {
+    border-radius: 100%;
+}
+
+.priority__radio[type="radio"]:checked + label:after, 
+.priority__radio[type="radio"]:not(:checked) + label:after {
+    content: "";
+    position: absolute;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.priority__radio[type="radio"]:checked + label:after, 
+.priority__radio[type="radio"]:not(:checked) + label:after {
+    left: 0px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 3.5px solid var(--white);
+}
+
+.priority__radio[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+}
+
+.priority__radio[type="radio"]:checked + label:after {
+    opacity: 1;
+}
 
 
 /* Fonts */

@@ -66,9 +66,26 @@
                 <h2 class="taskList__title newTask">
                     Priority
                 </h2>
-                <div class="priority__inner">
-                    <div class="priority__cirle"></div>
-                </div>
+
+                <div class="priority__inner priority__inner--Radio">
+
+                    <div class="priority__cirle">
+                        <input class="priority__radio" type="radio" name="radio__blue" id="radioBlue">
+                        <label for="radioBlue"></label>
+                    </div><!-- prioroty__cirle -->
+
+                    <div class="priority__cirle">
+                        <input class="priority__radio yellow" type="radio" name="radio__blue" id="radioYellow">
+                        <label for="radioYellow"></label>
+                    </div><!-- prioroty__cirle -->
+
+                    <div class="priority__cirle">
+                        <input class="priority__radio red" type="radio" name="radio__blue" id="radioRed">
+                        <label for="radioRed"></label>
+
+                    </div><!-- prioroty__cirle -->
+
+                </div><!-- prioroty__inner -->
             </div><!-- input item -->
 
         </div>
@@ -197,6 +214,7 @@
         <div class="container">
             <div class="footer__inner">
                 <button class="newTaskButton">New</button>
+                <button class="newTaskButton visible">Add</button>
             </div><!-- footer__inner -->
         </div><!-- container -->
     </footer>

@@ -75,7 +75,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .newNote__inner.visible {
     display: block;
-    padding-bottom: 40px;
     display: flex;
     align-items: center;
     position: relative;
@@ -86,8 +85,8 @@ h1, h2, h3, h4, h5, h6 {
 .backBotton {
     position: absolute;
     left: 5%;
-    top: 22.5%;
-    transform: translateX(-22.5%);
+    top: 35%;
+    transform: translateX(-35%);
     cursor: pointer;
     transition: 0.1s;
 }
@@ -200,6 +199,10 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
     font-weight: 400;
     margin: 20px 0 20px 0;
+}
+
+.taskList__title.newTask {
+    font-weight: 700;
 }
 
 
@@ -340,6 +343,46 @@ h1, h2, h3, h4, h5, h6 {
 
     color: var(--white);
 }
+
+/* input */
+
+.input__item {
+    display: flex;
+    min-height: 50px;
+    width: 100%;
+    background-color: var(--blackLight);
+    border: 0;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin: 10px 0;
+    padding: 0 15px;
+}
+
+.task__input {
+    min-width: 50px;
+    font-family: 'Product Sans';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.41px;
+    background: none;
+    border: 0;
+    outline: 0;
+    color: var(--white);
+    text-align: center;
+    padding: 0 30px;
+}
+
+::-webkit-input-placeholder {
+    font-family: 'Product Sans';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.41px;
+    color: var(--white);
+}
+
+
 
 /* Fonts */
 

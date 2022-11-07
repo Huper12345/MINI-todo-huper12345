@@ -53,20 +53,20 @@
 
 <div class="pageWrapper">
     <div class="container">
-        <div class="taskInput">
+        <form class="taskInput" id="taskForm">
             
             <div class="input__item">
                 <h2 class="taskList__title newTask">
                     Name
                 </h2>
-                <input class="task__input" type="text" placeholder="homework">
+                <input class="task__input" type="text" placeholder="homework" id="taskInputText">
             </div><!-- input item -->
 
             <div class="input__item">
                 <h2 class="taskList__title newTask">
                     Finish date
                 </h2>
-                <input class="task__input" type="text" placeholder="29.03.2022">
+                <input class="task__input" type="text" placeholder="29.03.2022" id="taskInputDate">
             </div><!-- input item -->
 
             <div class="input__item">
@@ -77,18 +77,18 @@
                 <div class="priority__inner priority__inner--Radio">
 
                     <div class="priority__cirle">
-                        <input class="priority__radio" type="radio" name="radio__blue" id="radioBlue">
-                        <label for="radioBlue"></label>
+                        <input class="priority__radio" type="radio" name="radioColor" id="taskInputRadioblue" value="blue">
+                        <label for="taskInputRadioblue"></label>
                     </div><!-- prioroty__cirle -->
 
                     <div class="priority__cirle">
-                        <input class="priority__radio yellow" type="radio" name="radio__blue" id="radioYellow">
-                        <label for="radioYellow"></label>
+                        <input class="priority__radio yellow" type="radio" name="radioColor" id="taskInputRadioYellow" value="yellow">
+                        <label for="taskInputRadioYellow"></label>
                     </div><!-- prioroty__cirle -->
 
                     <div class="priority__cirle">
-                        <input class="priority__radio red" type="radio" name="radio__blue" id="radioRed">
-                        <label for="radioRed"></label>
+                        <input class="priority__radio red" type="radio" name="radioColor" id="taskInputRadioRed" value="red">
+                        <label for="taskInputRadioRed"></label>
 
                     </div><!-- prioroty__cirle -->
 
@@ -102,19 +102,28 @@
 
 
                 <div class="priority__inner priority__inner--checkBox">
-                    <svg class="priority__image active">
-                        <use xlink:href="#priority"></use>
-                    </svg>
-                    <svg class="priority__image">
-                        <use xlink:href="#priority"></use>
-                    </svg>
-                    <svg class="priority__image">
-                        <use xlink:href="#priority"></use>
-                    </svg>
+                    <div class="priority__imageInner" id="low">
+                        <svg class="priority__image active" id="=taskTimeLow">
+                            <use xlink:href="#priority"></use>
+                        </svg>
+                    </div>
+
+                    <div class="priority__imageInner" id="middle">
+                        <svg class="priority__image" id="taskTimeMiddle">
+                            <use xlink:href="#priority"></use>
+                        </svg>
+                    </div>
+
+                    <div class="priority__imageInner" id="high">
+                        <svg class="priority__image" id="taskTimeHigh">
+                            <use xlink:href="#priority"></use>
+                        </svg>
+                    </div>
+
                 </div>
             </div><!-- input item -->
 
-        </div>
+        </form>
     </div><!-- container -->
 
     <div class="mainWrapper">   
@@ -240,7 +249,7 @@
         <div class="container">
             <div class="footer__inner">
                 <button class="newTaskButton">New</button>
-                <button class="newTaskButton visible">Add</button>
+                <button type="submit" form="taskForm" class="newTaskButton visible">Add</button>
             </div><!-- footer__inner -->
         </div><!-- container -->
     </footer>
@@ -248,4 +257,5 @@
 </div><!--pageWrapper-->
 
 </body>
+<script src="./assets/js/index.js"></script>
 </html>

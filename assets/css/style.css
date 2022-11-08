@@ -8,7 +8,7 @@
     --blue: #78ACD5;
     --red: #FF2460;
     --yellow: #FCF302;
-    --green: #00613a;
+    --green: #2b302e;
     --blueLight: rgba(78, 223, 252, 1);
 
     --hex-side: 15px;
@@ -198,6 +198,36 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--black);
 }
 
+.delButton {
+    display: none;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+    transition: 0.2s;
+    position: absolute;
+    right: 10%;
+
+}
+
+.delButton::before,
+.delButton::after {
+	content: '';
+	position: absolute;
+	top: 10px;
+	display: block;
+	width: 40px;
+	height: 3px;
+	background: var(--red);
+}
+
+.delButton::before {
+	transform: rotate(45deg);
+}
+
+.delButton::after {
+	transform: rotate(-45deg);
+}
+
 /* taskList*/
 
 .taskList__inner {
@@ -232,6 +262,8 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
     position: relative;
     margin: 10px 0;
+    transition: 0.2s;
+    cursor: pointer;
 }
 
 .task__item.red::before {
@@ -252,6 +284,23 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     left: 15px;
 }
+
+.task__item:hover {
+background-color: var(--green);
+}
+
+.task__item:hover .delButton {
+    display: block;
+    transition: 0.2s;
+}
+
+.task__item:hover .priority__inner {
+    opacity: 0.1;
+    transition: 0.2s;
+}
+
+
+
 .task__text {
     font-size: 16px;
     font-weight: 400;
@@ -315,11 +364,12 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    transition: 0.1s;
+    transition: 0.2s;
 }
 
 .task__item.cleanButton:hover {
-    background-color: var(--blue);
+    background-color: var(--red);
+    opacity: 0.8;
 }
 
 /* footer */

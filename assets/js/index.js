@@ -46,97 +46,17 @@ const tomorrowButton = document.querySelector('#tomorrowButton');
 
 const allButton = document.querySelector('#allButton');
 
+ // Tasklist
 
-taskForm.addEventListener('submit', function(event) {
-    // Отмена отправки формы
-    event.preventDefault();
-    // Достаем текст из input
-    const taskInputTextResult = taskInputText.value;
-    
-    const taskInputDateResult = taskInputDate.value;
-    
-    const checkedColor = document.getElementById("#taskForm");
-
-    const checkedColorResult = taskForm.elements["radioColor"].value
-
-    const checkPriorityResult = checkPriority();
-
-    // Выводим данные
-
-    const buildHTML = function() {
-    
-        if (checkPriorityResult == "LowTime") {
-            return `<div class="task__item ${checkedColorResult}">
-            <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
-            
-            <div class="priority__inner">
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-            </div>
-        </div><!-- task__item -->`;
-        }
-    
-        if (checkPriorityResult == "MiddleTime") {
-            return `<div class="task__item ${checkedColorResult}">
-            <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
-            
-            <div class="priority__inner">
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-            </div>
-        </div><!-- task__item -->`;
-        }
-    
-        if (checkPriorityResult == "HighTime") {
-            return `<div class="task__item ${checkedColorResult}">
-            <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
-            
-            <div class="priority__inner">
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-            </div>
-        </div><!-- task__item -->`;
-        }
-    }
-
-const TaskConstructor = {
-    constructor: function(checkPriorityResult, checkedColorResult, taskInputTextResult, taskInputDateResult) {
-        this.checkPriorityResult = checkPriorityResult;
-        this.checkedColorResult = checkedColorResult
-        this.taskInputTextResult = taskInputTextResult;
-        this.taskInputDateResult = taskInputDateResult;
-            return this;
-    }
-}
-
-const task1 = new TaskConstructor.constructor(checkPriorityResult, checkedColorResult, taskInputTextResult, taskInputDateResult);
-
-console.log(BuildHTML);
-console.log(task1);
-})
+ const taskList = document.querySelector("#taskList");
 
 
+// Добавление задачи
+taskForm.addEventListener('submit', addTask)
+
+
+// Удаление задачи
+taskList.addEventListener('click', deleteTask)
 
 
 
@@ -217,4 +137,105 @@ allButton.onclick = function() {
     tomorrowButton.classList.remove("active");
     todayButton.classList.remove("active");
     
+}
+
+
+function addTask(event) {
+    // Отмена отправки формы
+    event.preventDefault();
+    // Достаем текст из input
+    const taskInputTextResult = taskInputText.value;
+    
+    const taskInputDateResult = taskInputDate.value;
+    
+    const checkedColor = document.getElementById("#taskForm");
+
+    const checkedColorResult = taskForm.elements["radioColor"].value
+
+    const checkPriorityResult = checkPriority();
+
+    // Выводим данные
+
+    const BuildHTML = function() {
+    
+        if (checkPriorityResult == "LowTime") {
+            return `<div class="task__item ${checkedColorResult}">
+            <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
+            <div class="delButton"></div>
+            <div class="priority__inner">
+                <svg class="priority__image active">
+                    <use xlink:href="#priority"></use>
+                    </svg>
+                <svg class="priority__image">
+                    <use xlink:href="#priority"></use>
+                    </svg>
+                <svg class="priority__image">
+                    <use xlink:href="#priority"></use>
+                    </svg>
+            </div>
+        </div><!-- task__item -->`;
+        }
+    
+        if (checkPriorityResult == "MiddleTime") {
+            return `<div class="task__item ${checkedColorResult}">
+            <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
+            <div class="delButton"></div>
+            <div class="priority__inner">
+                <svg class="priority__image active">
+                    <use xlink:href="#priority"></use>
+                    </svg>
+                <svg class="priority__image active">
+                    <use xlink:href="#priority"></use>
+                    </svg>
+                <svg class="priority__image">
+                    <use xlink:href="#priority"></use>
+                    </svg>
+            </div>
+        </div><!-- task__item -->`;
+        }
+    
+        if (checkPriorityResult == "HighTime") {
+            return `<div class="task__item ${checkedColorResult}">
+            <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
+            <div class="delButton"></div>
+            <div class="priority__inner">
+                <svg class="priority__image active">
+                    <use xlink:href="#priority"></use>
+                    </svg>
+                <svg class="priority__image active">
+                    <use xlink:href="#priority"></use>
+                    </svg>
+                <svg class="priority__image active">
+                    <use xlink:href="#priority"></use>
+                    </svg>
+            </div>
+        </div><!-- task__item -->`;
+        }
+    }
+
+    const TaskConstructor = {
+        constructor: function(checkPriorityResult, checkedColorResult, taskInputTextResult, taskInputDateResult) {
+            this.checkPriorityResult = checkPriorityResult;
+            this.checkedColorResult = checkedColorResult
+            this.taskInputTextResult = taskInputTextResult;
+            this.taskInputDateResult = taskInputDateResult;
+                return this;
+        }
+    }
+
+    const task1 = new TaskConstructor.constructor(checkPriorityResult, checkedColorResult, taskInputTextResult, taskInputDateResult);
+
+    // Добавляем задачу на страницу
+
+    taskList.insertAdjacentHTML('beforeend', BuildHTML());
+
+    // Очищаем input
+    taskInputText.value = "";
+    taskInputDate.value = "";
+    taskInputText.focus()
+}
+
+
+function deleteTask(event) {
+    console.log(event.target);
 }

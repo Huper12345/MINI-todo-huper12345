@@ -122,6 +122,9 @@ h1, h2, h3, h4, h5, h6 {
     fill: var(--blue);
 } */
 
+
+/* wrappers */
+
 .pageWrapper {
     position: relative;
     min-height: 80vh;
@@ -137,6 +140,14 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
+.subWrapper {
+    display: none;
+}
+
+.subWrapper.visible {
+    display: block;
+}
+
 
 /* dateSort */
 
@@ -145,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dateSort__button {
-    color: inherit;
+    color: var(--white);
     border: 0;
     border-radius: 15px;
 
@@ -179,6 +190,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 14.56px;
     text-transform: uppercase;
+    color: var(--white);
 }
 
 .button__text.active {
@@ -475,8 +487,6 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
 }
 
-
-
 /* Fonts */
 
 /* Product Sans regular */
@@ -496,5 +506,4 @@ h1, h2, h3, h4, h5, h6 {
     src: url("../fonts/Product-Sans-Bold.woff") format("woff");
     font-display: swap; 
     }
-
 

@@ -28,13 +28,13 @@
     <header class="header">
         <div class="container">
                 
-                <div class="note__inner">
+                <div class="note__inner" id="noteInner">
                     <h1 class="header__title">Note</h1>
                 </div>
                 
-                <div class="newNote__inner visible">
+                <div class="newNote__inner visible" id="newNoteInner">
                     
-                    <div class="backBotton">
+                    <div class="backBotton" id="#backBotton">
                         <svg class="backBottonImg">
                             <use xlink:href="#backBotton"></use>
                         </svg>
@@ -52,94 +52,96 @@
     </header>
 
 <div class="pageWrapper">
-    <div class="container">
-        <form class="taskInput" id="taskForm">
-            
-            <div class="input__item">
-                <h2 class="taskList__title newTask">
-                    Name
-                </h2>
-                <input class="task__input" type="text" placeholder="homework" id="taskInputText">
-            </div><!-- input item -->
 
-            <div class="input__item">
-                <h2 class="taskList__title newTask">
-                    Finish date
-                </h2>
-                <input class="task__input" type="text" placeholder="29.03.2022" id="taskInputDate">
-            </div><!-- input item -->
+    <div class="subWrapper visible" id="subWrapper">
+        <div class="container">
+            <form class="taskInput" id="taskForm">
+                
+                <div class="input__item">
+                    <h2 class="taskList__title newTask">
+                        Name
+                    </h2>
+                    <input class="task__input" type="text" placeholder="homework" id="taskInputText">
+                </div><!-- input item -->
 
-            <div class="input__item">
-                <h2 class="taskList__title newTask">
-                    Priority
-                </h2>
+                <div class="input__item">
+                    <h2 class="taskList__title newTask">
+                        Finish date
+                    </h2>
+                    <input class="task__input" type="text" placeholder="29.03.2022" id="taskInputDate">
+                </div><!-- input item -->
 
-                <div class="priority__inner priority__inner--Radio">
+                <div class="input__item">
+                    <h2 class="taskList__title newTask">
+                        Priority
+                    </h2>
 
-                    <div class="priority__cirle">
-                        <input class="priority__radio" type="radio" name="radioColor" id="taskInputRadioblue" value="blue">
-                        <label for="taskInputRadioblue"></label>
-                    </div><!-- prioroty__cirle -->
+                    <div class="priority__inner priority__inner--Radio">
 
-                    <div class="priority__cirle">
-                        <input class="priority__radio yellow" type="radio" name="radioColor" id="taskInputRadioYellow" value="yellow">
-                        <label for="taskInputRadioYellow"></label>
-                    </div><!-- prioroty__cirle -->
+                        <div class="priority__cirle">
+                            <input class="priority__radio" type="radio" name="radioColor" id="taskInputRadioblue" value="blue">
+                            <label for="taskInputRadioblue"></label>
+                        </div><!-- prioroty__cirle -->
 
-                    <div class="priority__cirle">
-                        <input class="priority__radio red" type="radio" name="radioColor" id="taskInputRadioRed" value="red">
-                        <label for="taskInputRadioRed"></label>
+                        <div class="priority__cirle">
+                            <input class="priority__radio yellow" type="radio" name="radioColor" id="taskInputRadioYellow" value="yellow">
+                            <label for="taskInputRadioYellow"></label>
+                        </div><!-- prioroty__cirle -->
 
-                    </div><!-- prioroty__cirle -->
+                        <div class="priority__cirle">
+                            <input class="priority__radio red" type="radio" name="radioColor" id="taskInputRadioRed" value="red">
+                            <label for="taskInputRadioRed"></label>
 
-                </div><!-- prioroty__inner -->
-            </div><!-- input item -->
+                        </div><!-- prioroty__cirle -->
 
-            <div class="input__item">
-                <h2 class="taskList__title newTask">
-                    Energy costs
-                </h2>
+                    </div><!-- prioroty__inner -->
+                </div><!-- input item -->
 
+                <div class="input__item">
+                    <h2 class="taskList__title newTask">
+                        Energy costs
+                    </h2>
 
-                <div class="priority__inner priority__inner--checkBox">
-                    <div class="priority__imageInner" id="low">
-                        <svg class="priority__image active" id="=taskTimeLow">
-                            <use xlink:href="#priority"></use>
-                        </svg>
+                    <div class="priority__inner priority__inner--checkBox">
+                        <div class="priority__imageInner" id="low">
+                            <svg class="priority__image active" id="=taskTimeLow">
+                                <use xlink:href="#priority"></use>
+                            </svg>
+                        </div>
+
+                        <div class="priority__imageInner" id="middle">
+                            <svg class="priority__image" id="taskTimeMiddle">
+                                <use xlink:href="#priority"></use>
+                            </svg>
+                        </div>
+
+                        <div class="priority__imageInner" id="high">
+                            <svg class="priority__image" id="taskTimeHigh">
+                                <use xlink:href="#priority"></use>
+                            </svg>
+                        </div>
+
                     </div>
+                </div><!-- input item -->
 
-                    <div class="priority__imageInner" id="middle">
-                        <svg class="priority__image" id="taskTimeMiddle">
-                            <use xlink:href="#priority"></use>
-                        </svg>
-                    </div>
+            </form>
+        </div><!-- container -->
+    </div> <!-- subWrapper -->
 
-                    <div class="priority__imageInner" id="high">
-                        <svg class="priority__image" id="taskTimeHigh">
-                            <use xlink:href="#priority"></use>
-                        </svg>
-                    </div>
-
-                </div>
-            </div><!-- input item -->
-
-        </form>
-    </div><!-- container -->
-
-    <div class="mainWrapper">   
+    <div class="mainWrapper" id="mainWrapper">   
 
         <div class="dateSort">
         <div class="container">
             <div class="dateSort__inner">
-                <button class="dateSort__button active">
-                    <span class="button__text active">Today</span>
+                <button class="dateSort__button active" id="todayButton">
+                    <span class="button__text">Today</span>
                 </button>
                 
-                <button class="dateSort__button">
+                <button class="dateSort__button" id="tomorrowButton">
                     <span class="button__text">Tomorrow</span>
                 </button>
                 
-                <button class="dateSort__button">
+                <button class="dateSort__button" id="allButton">
                     <span class="button__text">All</span>
                 </button>
                 </div>
@@ -248,8 +250,8 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__inner">
-                <button class="newTaskButton">New</button>
-                <button type="submit" form="taskForm" class="newTaskButton visible">Add</button>
+                <button class="newTaskButton" id="newTaskButtonNew">New</button>
+                <button type="submit" form="taskForm" class="newTaskButton visible" id="newTaskButtonAdd">Add</button>
             </div><!-- footer__inner -->
         </div><!-- container -->
     </footer>

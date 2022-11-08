@@ -120,9 +120,20 @@ taskForm.addEventListener('submit', function(event) {
         }
     }
 
-    const taskHTML = buildHTML;
+const TaskConstructor = {
+    constructor: function(checkPriorityResult, checkedColorResult, taskInputTextResult, taskInputDateResult) {
+        this.checkPriorityResult = checkPriorityResult;
+        this.checkedColorResult = checkedColorResult
+        this.taskInputTextResult = taskInputTextResult;
+        this.taskInputDateResult = taskInputDateResult;
+            return this;
+    }
+}
 
-console.log(taskHTML())
+const task1 = new TaskConstructor.constructor(checkPriorityResult, checkedColorResult, taskInputTextResult, taskInputDateResult);
+
+console.log(BuildHTML);
+console.log(task1);
 })
 
 

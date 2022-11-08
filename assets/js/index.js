@@ -1,3 +1,5 @@
+"use strict";
+
 // Add TASK
 
 const taskForm = document.querySelector('#taskForm');
@@ -17,6 +19,33 @@ const taskPriorityLow = document.querySelector('#taskTimeLow');
 const taskPriorityMiddle = document.querySelector('#taskTimeMiddle');
 
 const taskPriorityHigh = document.querySelector('#taskTimeHigh');
+
+// Back Button
+
+const backBotton = document.querySelector('#backBotton');
+
+const noteInner = document.querySelector('#noteInner');
+
+const newNoteInner = document.querySelector('#newNoteInner');
+
+const newTaskButtonNew = document.querySelector('#newTaskButtonNew');
+
+const newTaskButtonAdd = document.querySelector('#newTaskButtonAdd');
+
+// Обертки 1 и 2 
+
+const mainWrapper = document.querySelector('#mainWrapper');
+
+const subWrapper = document.querySelector('#subWrapper');
+
+// Today, tomorrow, all buttons
+
+const todayButton = document.querySelector('#todayButton');
+
+const tomorrowButton = document.querySelector('#tomorrowButton');
+
+const allButton = document.querySelector('#allButton');
+
 
 taskForm.addEventListener('submit', function(event) {
     // Отмена отправки формы
@@ -98,8 +127,6 @@ console.log(taskHTML())
 
 
 
- 
-
 
 
 // Priority click and result
@@ -130,3 +157,53 @@ function checkPriority() {
     }
 }
 
+// Back Button
+
+backBotton.onclick = function() {
+
+    subWrapper.classList.remove("visible");
+    newTaskButtonAdd.classList.remove("visible");
+    newNoteInner.classList.remove("visible");
+
+    noteInner.classList.add("visible");
+    mainWrapper.classList.add("visible");
+    newTaskButtonNew.classList.add("visible");
+}
+
+//New Button
+
+newTaskButtonNew.onclick = function() {
+
+    subWrapper.classList.add("visible");
+    newTaskButtonAdd.classList.add("visible");
+    newNoteInner.classList.add("visible");
+
+    noteInner.classList.remove("visible");
+    mainWrapper.classList.remove("visible");
+    newTaskButtonNew.classList.remove("visible");
+}
+
+// Today, tomorrow, all buttons
+
+todayButton.onclick = function() {
+    
+    todayButton.classList.add("active");
+    tomorrowButton.classList.remove("active");
+    allButton.classList.remove("active");
+
+}
+
+tomorrowButton.onclick = function() {
+    
+    tomorrowButton.classList.add("active");
+    todayButton.classList.remove("active");
+    allButton.classList.remove("active");
+}
+
+allButton.onclick = function() {
+    
+    allButton.classList.add("active");
+    tomorrowButton.classList.remove("active");
+    todayButton.classList.remove("active");
+    
+}

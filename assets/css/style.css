@@ -101,7 +101,7 @@ h1, h2, h3, h4, h5, h6 {
     fill: var(--blue);
 }
 
-/* .settings__button {
+.settings__button {
     display: block;
     text-decoration: none;
     position: absolute;
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 18.34px;
     height: 20px;
     fill: var(--blue);
-} */
+}
 
 
 /* wrappers */

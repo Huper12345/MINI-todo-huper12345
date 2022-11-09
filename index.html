@@ -150,9 +150,9 @@
                         Backlogs
                     </h2>
 
-                    <div class="taskList__task" id="taskList">
+                    <div class="taskList__task" id="taskList" data-zone="1">
                         
-                        <div class="task__item red" draggable="true">
+                        <div class="task__item red" draggable="true" data-item="25.07.2023">
                             <h3 class="task__text">Homework</h3>
                             <button data-action="delete" class="delButton"></button>
                             <div class="priority__inner">
@@ -163,6 +163,22 @@
                                     <use xlink:href="#priority"></use>
                                     </svg>
                                 <svg class="priority__image">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                            </div>
+                        </div><!-- task__item -->
+
+                        <div class="task__item yellow" draggable="true" data-item="22.03.2022">
+                            <h3 class="task__text">Homework</h3>
+                            <button data-action="delete" class="delButton"></button>
+                            <div class="priority__inner">
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image active">
                                     <use xlink:href="#priority"></use>
                                     </svg>
                             </div>
@@ -182,11 +198,28 @@
                     <h2 class="taskList__title">
                         Completed tasks
                     </h2>
-                <div class="taskList__task complete" id="taskListComplete">
+                <div class="taskList__task complete" id="taskListComplete" data-zone="2">
                     
+                    <div class="task__item red complete" draggable="true" data-item="28-03-2025">
+                            <h3 class="task__text">Homework</h3>
+                            <button data-action="delete" class="delButton"></button>
+                            <div class="priority__inner">
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image active">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                                <svg class="priority__image">
+                                    <use xlink:href="#priority"></use>
+                                    </svg>
+                            </div>
+                        </div><!-- task__item -->
+
+
                 </div><!--taskList__task complete-->
                 </div><!-- taskList__inner complete-->
-                    <button class="task__item cleanButton">
+                    <button class="cleanButton">
                         Clean up the room
                     </button>
             </div><!-- container -->   

@@ -347,7 +347,17 @@ background-color: var(--green);
 
 /* Complete tasks block */
 
-.task__item.cleanButton {
+.cleanButton {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 50px;
+    background-color: var(--blackLight);
+    border-radius: 10px;
+    align-items: center;
+    position: relative;
+    margin: 10px 0;
+    cursor: pointer;
+    
     border: 0;
     color: var(--white);
     width: 100%;
@@ -358,7 +368,7 @@ background-color: var(--green);
     transition: 0.2s;
 }
 
-.task__item.cleanButton:hover {
+.cleanButton:hover {
     background-color: var(--red);
     opacity: 0.8;
 }

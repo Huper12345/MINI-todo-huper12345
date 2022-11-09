@@ -53,6 +53,8 @@ const allButton = document.querySelector('#allButton');
 //  Drag and drop
 
 const taskListComplete = document.querySelector('#taskListComplete');
+const taskListAll = document.querySelector('.taskList__task');
+
 const taskItem = document.querySelector('.task__item');
 
 // Добавление задачи
@@ -163,7 +165,7 @@ function addTask(event) {
     const BuildHTML = function() {
     
         if (checkPriorityResult == "LowTime") {
-            return `<div class="task__item ${checkedColorResult}" draggable="true">
+            return `<div class="task__item ${checkedColorResult}" draggable="true" data-item="${taskInputDateResult}">
             <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
@@ -181,7 +183,7 @@ function addTask(event) {
         }
     
         if (checkPriorityResult == "MiddleTime") {
-            return `<div class="task__item ${checkedColorResult}" draggable="true">
+            return `<div class="task__item ${checkedColorResult}" draggable="true" data-item="${taskInputDateResult}">
             <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
@@ -199,7 +201,7 @@ function addTask(event) {
         }
     
         if (checkPriorityResult == "HighTime") {
-            return `<div class="task__item ${checkedColorResult}" draggable="true">
+            return `<div class="task__item ${checkedColorResult}" draggable="true" data-item="${taskInputDateResult}">
             <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
@@ -217,17 +219,6 @@ function addTask(event) {
         }
     }
 
-    const TaskConstructor = {
-        constructor: function(checkPriorityResult, checkedColorResult, taskInputTextResult, taskInputDateResult) {
-            this.checkPriorityResult = checkPriorityResult;
-            this.checkedColorResult = checkedColorResult
-            this.taskInputTextResult = taskInputTextResult;
-            this.taskInputDateResult = taskInputDateResult;
-                return this;
-        }
-    }
-
-    const task1 = new TaskConstructor.constructor(checkPriorityResult, checkedColorResult, taskInputTextResult, taskInputDateResult);
 
     // Добавляем задачу на страницу
 
@@ -237,6 +228,7 @@ function addTask(event) {
     taskInputText.value = "";
     taskInputDate.value = "";
     taskInputText.focus()
+    
 }
 
 
@@ -252,53 +244,58 @@ function deleteTask(event) {
 
 // drag and drop
 
+const dragItems = document.querySelectorAll('.task__item');
 
-const dragAndDrop = () => {
-    document.querySelectorAll('.task__item');
+const dropZones = document.querySelectorAll('.taskList__task');
 
-    const dragstart = function() {
-        setTimeout(() => {
-            this.classList.add('hide')
-        }, 0)
-    }
+dragItems.forEach(dragItem => {
+    dragItem.addEventListener('dragstart', handlerDragstart);
+    dragItem.addEventListener('dragend', handlerDragend);
+})
 
-    const dragEnd = function() {
-        this.classList.remove('hide')
-    }
 
-    const dragOver = function(event) {
-        event.preventDefault();
-    }
+dropZones.forEach(dropZone => {
+    dropZone.addEventListener('dragenter', handlerDragenter);
+    dropZone.addEventListener('dragleave', handlerDragleave);
+    dropZone.addEventListener('dragover', handlerDragover);
+    dropZone.addEventListener('drop', handlerDrop);
+    
+})
 
-    const dragEnter = function(event) {
-        event.preventDefault();
-        this.classList.add('hovered');
-    }
-
-    const dragLeave = function() {
-        this.classList.remove('hovered');
-    }
-
-    const dragDrop = function() {
-        this.append(taskItem);
-        this.classList.remove('hovered');
+function handlerDragstart(event) {
+    event.dataTransfer.setData("dragItem", this.dataset.item)
+    setTimeout(() => {
+        this.classList.add('hide');
+    }, 0) 
         
-    }
-
-
-    taskList.addEventListener('dragover', dragOver)
-    taskList.addEventListener('dragenter', dragEnter);
-    taskList.addEventListener('dragleave', dragLeave);
-    taskList.addEventListener('drop', dragDrop);
-    taskListComplete.addEventListener('dragover', dragOver)
-    taskListComplete.addEventListener('dragenter', dragEnter);
-    taskListComplete.addEventListener('dragleave', dragLeave);
-    taskListComplete.addEventListener('drop', dragDrop);
-
-
-    taskItem.addEventListener('dragstart', dragstart);
-    taskItem.addEventListener('dragend', dragEnd);   
 }
 
-dragAndDrop();
-  
+function handlerDragend(event) {
+    this.classList.remove('hide');
+}
+
+function handlerDrag(event) {
+    console.log("drag");
+}
+
+function handlerDragenter(event) {
+    event.preventDefault();
+    this.classList.add('hovered');
+}
+
+function handlerDragleave(event) {
+    event.preventDefault();
+    this.classList.remove('hovered');
+}
+
+function handlerDragover(event) {
+    event.preventDefault();
+}
+
+function handlerDrop(event) {
+    const dragFlag = event.dataTransfer.getData("dragItem");
+
+    const dragItem = document.querySelector(`[data-item="${dragFlag}"]`);
+    
+    this.append(dragItem);
+}

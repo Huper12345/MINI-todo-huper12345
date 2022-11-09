@@ -10,11 +10,7 @@
     --yellow: #FCF302;
     --green: #2b302e;
     --blueLight: rgba(78, 223, 252, 1);
-
-    --hex-side: 15px;
 }
-
-
 
 body {
     font-family: 'Product Sans';
@@ -100,28 +96,6 @@ h1, h2, h3, h4, h5, h6 {
     height: 20px;
     fill: var(--blue);
 }
-
-.settings__button {
-    display: block;
-    text-decoration: none;
-    position: absolute;
-    right: 17.83px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.settings__button:hover .settingsSvg {
-    fill: var(--white);
-    transition: 0.1s;
-}
-
-.settingsSvg {
-    display: block;
-    width: 18.34px;
-    height: 20px;
-    fill: var(--blue);
-}
-
 
 /* wrappers */
 

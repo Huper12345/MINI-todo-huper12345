@@ -206,6 +206,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: 0.2s;
     position: absolute;
     right: 10%;
+    z-index: 1000;
 
 }
 

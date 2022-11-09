@@ -50,6 +50,10 @@ const allButton = document.querySelector('#allButton');
 
  const taskList = document.querySelector("#taskList");
 
+//  Drag and drop
+
+const taskListComplete = document.querySelector('#taskListComplete');
+const taskItem = document.querySelector('.task__item');
 
 // Добавление задачи
 taskForm.addEventListener('submit', addTask)
@@ -159,9 +163,9 @@ function addTask(event) {
     const BuildHTML = function() {
     
         if (checkPriorityResult == "LowTime") {
-            return `<div class="task__item ${checkedColorResult}">
+            return `<div class="task__item ${checkedColorResult}" draggable="true">
             <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
-            <div class="delButton"></div>
+            <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
                 <svg class="priority__image active">
                     <use xlink:href="#priority"></use>
@@ -177,9 +181,9 @@ function addTask(event) {
         }
     
         if (checkPriorityResult == "MiddleTime") {
-            return `<div class="task__item ${checkedColorResult}">
+            return `<div class="task__item ${checkedColorResult}" draggable="true">
             <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
-            <div class="delButton"></div>
+            <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
                 <svg class="priority__image active">
                     <use xlink:href="#priority"></use>
@@ -195,9 +199,9 @@ function addTask(event) {
         }
     
         if (checkPriorityResult == "HighTime") {
-            return `<div class="task__item ${checkedColorResult}">
+            return `<div class="task__item ${checkedColorResult}" draggable="true">
             <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
-            <div class="delButton"></div>
+            <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
                 <svg class="priority__image active">
                     <use xlink:href="#priority"></use>
@@ -236,6 +240,65 @@ function addTask(event) {
 }
 
 
+// Удаляем кнопку
+
 function deleteTask(event) {
-    console.log(event.target);
+  
+    if(event.target.dataset.action === 'delete') {
+       const parentNode = event.target.closest('.task__item');
+       parentNode.remove();
+    }
 }
+
+// drag and drop
+
+
+const dragAndDrop = () => {
+    document.querySelectorAll('.task__item');
+
+    const dragstart = function() {
+        setTimeout(() => {
+            this.classList.add('hide')
+        }, 0)
+    }
+
+    const dragEnd = function() {
+        this.classList.remove('hide')
+    }
+
+    const dragOver = function(event) {
+        event.preventDefault();
+    }
+
+    const dragEnter = function(event) {
+        event.preventDefault();
+        this.classList.add('hovered');
+    }
+
+    const dragLeave = function() {
+        this.classList.remove('hovered');
+    }
+
+    const dragDrop = function() {
+        this.append(taskItem);
+        this.classList.remove('hovered');
+        
+    }
+
+
+    taskList.addEventListener('dragover', dragOver)
+    taskList.addEventListener('dragenter', dragEnter);
+    taskList.addEventListener('dragleave', dragLeave);
+    taskList.addEventListener('drop', dragDrop);
+    taskListComplete.addEventListener('dragover', dragOver)
+    taskListComplete.addEventListener('dragenter', dragEnter);
+    taskListComplete.addEventListener('dragleave', dragLeave);
+    taskListComplete.addEventListener('drop', dragDrop);
+
+
+    taskItem.addEventListener('dragstart', dragstart);
+    taskItem.addEventListener('dragend', dragEnd);   
+}
+
+dragAndDrop();
+  

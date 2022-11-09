@@ -10,6 +10,7 @@
     --yellow: #FCF302;
     --green: #2b302e;
     --blueLight: rgba(78, 223, 252, 1);
+    --greenTask: #035836;
 }
 
 body {
@@ -181,6 +182,8 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     right: 10%;
     z-index: 1000;
+    background: none;
+    border: none;
 
 }
 
@@ -192,7 +195,7 @@ h1, h2, h3, h4, h5, h6 {
 	display: block;
 	width: 40px;
 	height: 3px;
-	background: var(--red);
+    background: var(--red);
 }
 
 .delButton::before {
@@ -274,6 +277,13 @@ background-color: var(--green);
     transition: 0.2s;
 }
 
+.hide {
+    display: none;
+}
+
+.hovered {
+    background-color: var(--greenTask);
+}
 
 
 .task__text {
@@ -283,6 +293,12 @@ background-color: var(--green);
     letter-spacing: 0em;
     margin-left: 27px;
 
+}
+
+/* taskList__task */
+
+.taskList__task {
+    min-height: 100px;
 }
 
 /* Complete Task */

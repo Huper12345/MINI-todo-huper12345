@@ -55,14 +55,14 @@
                     <h2 class="taskList__title newTask">
                         Name
                     </h2>
-                    <input class="task__input" type="text" placeholder="homework" id="taskInputText">
+                    <input class="task__input" type="text" placeholder="homework" id="taskInputText" required>
                 </div><!-- input item -->
 
                 <div class="input__item">
                     <h2 class="taskList__title newTask">
                         Finish date
                     </h2>
-                    <input class="task__input" type="text" placeholder="29.03.2022" id="taskInputDate">
+                    <input class="task__input" type="date" placeholder="29.03.2022" id="taskInputDate" required>
                 </div><!-- input item -->
 
                 <div class="input__item">
@@ -152,9 +152,9 @@
 
                     <div class="taskList__task" id="taskList">
                         
-                        <div class="task__item red">
+                        <div class="task__item red" draggable="true">
                             <h3 class="task__text">Homework</h3>
-                            <div class="delButton"></div>
+                            <button data-action="delete" class="delButton"></button>
                             <div class="priority__inner">
                                 <svg class="priority__image active">
                                     <use xlink:href="#priority"></use>
@@ -182,22 +182,8 @@
                     <h2 class="taskList__title">
                         Completed tasks
                     </h2>
-                <div class="taskList__task complete">
-                    <div class="task__item red complete">
-                        <h3 class="task__text">Homework</h3>
-                        
-                        <div class="priority__inner">
-                            <svg class="priority__image active">
-                                <use xlink:href="#priority"></use>
-                                </svg>
-                            <svg class="priority__image active">
-                                <use xlink:href="#priority"></use>
-                                </svg>
-                            <svg class="priority__image">
-                                <use xlink:href="#priority"></use>
-                                </svg>
-                        </div>
-                    </div><!-- task__item -->
+                <div class="taskList__task complete" id="taskListComplete">
+                    
                 </div><!--taskList__task complete-->
                 </div><!-- taskList__inner complete-->
                     <button class="task__item cleanButton">

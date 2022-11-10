@@ -298,4 +298,5 @@ function handlerDrop(event) {
     const dragItem = document.querySelector(`[data-item="${dragFlag}"]`);
     
     this.append(dragItem);
+    this.classList.remove('hovered')
 }

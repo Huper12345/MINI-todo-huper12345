@@ -453,6 +453,14 @@ background-color: var(--green);
     padding: 0 30px;
 }
 
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.task__input.date {
+    margin-right: 6%;
+}
+
 ::-webkit-input-placeholder {
     font-family: 'Product Sans';
     font-weight: 400;

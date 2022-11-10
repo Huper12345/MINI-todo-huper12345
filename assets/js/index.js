@@ -50,20 +50,15 @@ const allButton = document.querySelector('#allButton');
 
  const taskList = document.querySelector("#taskList");
 
-//  Drag and drop
+// Сохранение задач
 
-const taskListComplete = document.querySelector('#taskListComplete');
-const taskListAll = document.querySelector('.taskList__task');
-
-const taskItem = document.querySelector('.task__item');
+let taskMemory = [];
 
 // Добавление задачи
-taskForm.addEventListener('submit', addTask)
-
+taskForm.addEventListener('submit', addTask, dragAndDrop)
 
 // Удаление задачи
 taskList.addEventListener('click', deleteTask)
-
 
 
 // Priority click and result
@@ -147,9 +142,10 @@ allButton.onclick = function() {
 
 
 function addTask(event) {
-    // Отмена отправки формы
     event.preventDefault();
-    // Достаем текст из input
+
+    // Получаем данные
+
     const taskInputTextResult = taskInputText.value;
     
     const taskInputDateResult = taskInputDate.value;
@@ -160,13 +156,29 @@ function addTask(event) {
 
     const checkPriorityResult = checkPriority();
 
-    // Выводим данные
+// Обьект для задачи
+    const NewTask = {
+        id: Date.now(),
+        text: taskInputTextResult,
+        date: taskInputDateResult,
+        color: checkedColorResult,
+        priority: checkPriorityResult,
+        done: false,
+    }
+
+    taskMemory.push(NewTask);
+
+    // Формируем css класс
+    
+    const taskComplete = NewTask.done ? "task__item complete" : "task__item";
+
+    // Строим html разметку
 
     const BuildHTML = function() {
     
         if (checkPriorityResult == "LowTime") {
-            return `<div class="task__item ${checkedColorResult}" draggable="true" data-item="${taskInputDateResult}">
-            <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
+            return `<div id="${NewTask.id}" class="${taskComplete} ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
+            <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
                 <svg class="priority__image active">
@@ -183,8 +195,8 @@ function addTask(event) {
         }
     
         if (checkPriorityResult == "MiddleTime") {
-            return `<div class="task__item ${checkedColorResult}" draggable="true" data-item="${taskInputDateResult}">
-            <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
+            return `<div id="${NewTask.id}" class="${taskComplete} ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
+            <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
                 <svg class="priority__image active">
@@ -201,8 +213,8 @@ function addTask(event) {
         }
     
         if (checkPriorityResult == "HighTime") {
-            return `<div class="task__item ${checkedColorResult}" draggable="true" data-item="${taskInputDateResult}">
-            <h3 class="task__text">${taskInputTextResult} до ${taskInputDateResult}</h3>
+            return `<div id="${NewTask.id}" class="${taskComplete} ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
+            <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
                 <svg class="priority__image active">
@@ -219,16 +231,11 @@ function addTask(event) {
         }
     }
 
-
-    // Добавляем задачу на страницу
-
     taskList.insertAdjacentHTML('beforeend', BuildHTML());
 
-    // Очищаем input
     taskInputText.value = "";
     taskInputDate.value = "";
-    taskInputText.focus()
-    
+    taskInputText.focus();
 }
 
 
@@ -244,59 +251,62 @@ function deleteTask(event) {
 
 // drag and drop
 
-const dragItems = document.querySelectorAll('.task__item');
+function dragAndDrop() {
 
-const dropZones = document.querySelectorAll('.taskList__task');
+    const dragItems = document.querySelectorAll('.task__item');
 
-dragItems.forEach(dragItem => {
-    dragItem.addEventListener('dragstart', handlerDragstart);
-    dragItem.addEventListener('dragend', handlerDragend);
-})
+    const dropZones = document.querySelectorAll('.taskList__task');
+
+    dragItems.forEach(dragItem => {
+        dragItem.addEventListener('dragstart', handlerDragstart);
+        dragItem.addEventListener('dragend', handlerDragend);
+    })
 
 
-dropZones.forEach(dropZone => {
-    dropZone.addEventListener('dragenter', handlerDragenter);
-    dropZone.addEventListener('dragleave', handlerDragleave);
-    dropZone.addEventListener('dragover', handlerDragover);
-    dropZone.addEventListener('drop', handlerDrop);
-    
-})
-
-function handlerDragstart(event) {
-    event.dataTransfer.setData("dragItem", this.dataset.item)
-    setTimeout(() => {
-        this.classList.add('hide');
-    }, 0) 
+    dropZones.forEach(dropZone => {
+        dropZone.addEventListener('dragenter', handlerDragenter);
+        dropZone.addEventListener('dragleave', handlerDragleave);
+        dropZone.addEventListener('dragover', handlerDragover);
+        dropZone.addEventListener('drop', handlerDrop);
         
+    })
+
+    function handlerDragstart(event) {
+        event.dataTransfer.setData("dragItem", this.dataset.item)
+        setTimeout(() => {
+            this.classList.add('hide');
+        }, 0) 
+            
+    }
+
+    function handlerDragend(event) {
+        this.classList.remove('hide');
+    }
+
+    function handlerDragenter(event) {
+        event.preventDefault();
+        this.classList.add('hovered');
+    }
+
+    function handlerDragleave(event) {
+        event.preventDefault();
+        this.classList.remove('hovered');
+    }
+
+    function handlerDragover(event) {
+        event.preventDefault();
+    }
+
+    function handlerDrop(event) {
+        const dragFlag = event.dataTransfer.getData("dragItem");
+
+        const dragItem = document.querySelector(`[data-item="${dragFlag}"]`);
+        
+        this.append(dragItem);
+        this.classList.remove('hovered')
+    }
+
 }
 
-function handlerDragend(event) {
-    this.classList.remove('hide');
-}
+dragAndDrop();
 
-function handlerDrag(event) {
-    console.log("drag");
-}
-
-function handlerDragenter(event) {
-    event.preventDefault();
-    this.classList.add('hovered');
-}
-
-function handlerDragleave(event) {
-    event.preventDefault();
-    this.classList.remove('hovered');
-}
-
-function handlerDragover(event) {
-    event.preventDefault();
-}
-
-function handlerDrop(event) {
-    const dragFlag = event.dataTransfer.getData("dragItem");
-
-    const dragItem = document.querySelector(`[data-item="${dragFlag}"]`);
-    
-    this.append(dragItem);
-    this.classList.remove('hovered')
-}

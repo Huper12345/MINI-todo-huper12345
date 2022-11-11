@@ -48,7 +48,14 @@ const allButton = document.querySelector('#allButton');
 
  // Tasklist
 
- const taskList = document.querySelector("#taskList");
+const taskList = document.querySelector("#taskList");
+const taskItem = document.querySelector('.task__item');
+const taskListComplete = document.querySelector('#taskListComplete');
+const taskItemFaq = document.querySelector('#faq');
+
+
+//  dragAndDrop
+
 
 // Сохранение задач
 
@@ -168,16 +175,12 @@ function addTask(event) {
 
     taskMemory.push(NewTask);
 
-    // Формируем css класс
-    
-    const taskComplete = NewTask.done ? "task__item complete" : "task__item";
-
     // Строим html разметку
 
     const BuildHTML = function() {
     
         if (checkPriorityResult == "LowTime") {
-            return `<div id="${NewTask.id}" class="${taskComplete} ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
+            return `<div id="${NewTask.id}" class="task__item ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
             <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
@@ -195,7 +198,7 @@ function addTask(event) {
         }
     
         if (checkPriorityResult == "MiddleTime") {
-            return `<div id="${NewTask.id}" class="${taskComplete} ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
+            return `<div id="${NewTask.id}" class="task__item ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
             <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
@@ -213,7 +216,7 @@ function addTask(event) {
         }
     
         if (checkPriorityResult == "HighTime") {
-            return `<div id="${NewTask.id}" class="${taskComplete} ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
+            return `<div id="${NewTask.id}" class="task__item ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
             <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
@@ -239,23 +242,31 @@ function addTask(event) {
 }
 
 
-// Удаляем кнопку
+// Удаляем задачу
 
 function deleteTask(event) {
   
     if(event.target.dataset.action === 'delete') {
        const parentNode = event.target.closest('.task__item');
+       
+    //    Определяем id задачи
+       const ParNoneId = Number(parentNode.id);
+       
+       const index = taskMemory.findIndex((task) => task.id === ParNoneId);
+
+       taskMemory.splice(index, 1);
+
        parentNode.remove();
     }
 }
 
 // drag and drop
 
+const dragItems = document.querySelectorAll('.task__item');
+
+const dropZones = document.querySelectorAll('.taskList__task');
+
 function dragAndDrop() {
-
-    const dragItems = document.querySelectorAll('.task__item');
-
-    const dropZones = document.querySelectorAll('.taskList__task');
 
     dragItems.forEach(dragItem => {
         dragItem.addEventListener('dragstart', handlerDragstart);
@@ -303,10 +314,21 @@ function dragAndDrop() {
         const dragItem = document.querySelector(`[data-item="${dragFlag}"]`);
         
         this.append(dragItem);
-        this.classList.remove('hovered')
+        this.classList.remove('hovered');
+        dragItem.classList.toggle("complete");
     }
 
 }
 
 dragAndDrop();
 
+
+// Надпись при первом перетаскивании
+
+taskListComplete.addEventListener('drop', function() {
+    console.log("hover");
+
+    if(taskListComplete.children.length > 1) {
+        taskItemFaq.classList.add('hide')
+    }
+})

@@ -285,6 +285,13 @@ background-color: var(--green);
     background-color: var(--greenTask);
 }
 
+.task__item.faq {
+    background-color: var(--greenTask);
+    text-transform: uppercase;
+    text-align: center;
+    justify-content: center;
+}
+
 
 .task__text {
     font-size: 16px;
@@ -304,7 +311,7 @@ background-color: var(--green);
 /* Complete Task */
 .task__item.complete {
     background-color: var(--green);
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 

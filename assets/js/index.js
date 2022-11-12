@@ -105,47 +105,7 @@ high.onclick = function() {
     taskPriorityMiddle.classList.add("active");
 }
 
-
-function checkPriority() {
-    
-    if (taskPriorityHigh.classList.contains("active") && taskPriorityMiddle.classList.contains("active") ) {
-        return "HighTime";
-    }
-
-    if (taskPriorityMiddle.classList.contains("active")) {
-        return "MiddleTime";
-    }
-
-    else {
-        return "LowTime";
-    }
-}
-
-// Back Button
-
-backBotton.onclick = function() {
-
-    subWrapper.classList.remove("visible");
-    newTaskButtonAdd.classList.remove("visible");
-    newNoteInner.classList.remove("visible");
-
-    noteInner.classList.add("visible");
-    mainWrapper.classList.add("visible");
-    newTaskButtonNew.classList.add("visible");
-}
-
-//New Button
-
-newTaskButtonNew.onclick = function() {
-
-    subWrapper.classList.add("visible");
-    newTaskButtonAdd.classList.add("visible");
-    newNoteInner.classList.add("visible");
-
-    noteInner.classList.remove("visible");
-    mainWrapper.classList.remove("visible");
-    newTaskButtonNew.classList.remove("visible");
-}
+backAndNewButton();
 
 // Today, tomorrow, all buttons
 
@@ -181,8 +141,6 @@ function addTask(event) {
     
     const taskInputDateResult = taskInputDate.value;
     
-    const checkedColor = document.getElementById("#taskForm");
-
     const checkedColorResult = taskForm.elements["radioColor"].value
 
     const checkPriorityResult = checkPriority();
@@ -205,19 +163,16 @@ function addTask(event) {
     // Строим html разметку
 
     const BuildHTML = function() {
-    
-            return `<div id="${NewTask.id}" class="task__item ${NewTask.color} ${taskDoneClass}" draggable="true" data-item="${NewTask.date}">
-            <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
-            <button data-action="delete" class="delButton"></button>
-            <div class="priority__inner">
-                ${timeCost(checkPriorityResult)}
-            </div>
-        </div><!-- task__item -->`;       
-
+        return `<div id="${NewTask.id}" class="task__item ${NewTask.color} ${taskDoneClass}" draggable="true" data-item="${NewTask.date}">
+        <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
+        <button data-action="delete" class="delButton"></button>
+        <div class="priority__inner">
+            ${timeCost(checkPriorityResult)}
+        </div>
+    </div><!-- task__item -->`;       
     }
 
     taskList.insertAdjacentHTML('beforeend', BuildHTML());
-
     taskInputText.value = "";
     taskInputDate.value = "";
     taskInputText.focus();
@@ -230,7 +185,7 @@ function deleteTask(event) {
     if(event.target.dataset.action === 'delete') {
        const parentNode = event.target.closest('.task__item');
        
-    //    Определяем id задачи
+    // Определяем id задачи
        const ParNoneId = Number(parentNode.id);
        
        const index = taskMemory.findIndex((task) => task.id === ParNoneId);
@@ -315,7 +270,6 @@ function dragAndDrop() {
 
 dragAndDrop();
 
-
 // Надпись при первом перетаскивании
 
 taskListComplete.addEventListener("drop", showComplete);
@@ -374,5 +328,43 @@ function timeCost(value) {
     <svg class="priority__image active">
         <use xlink:href="#priority"></use>
         </svg>`
+    }
+}
+
+function checkPriority() {
+    if (taskPriorityHigh.classList.contains("active") && taskPriorityMiddle.classList.contains("active") ) {
+        return "HighTime";
+    }
+
+    if (taskPriorityMiddle.classList.contains("active")) {
+        return "MiddleTime";
+    }
+
+    else {
+        return "LowTime";
+    }
+}
+
+function backAndNewButton() {
+    backBotton.onclick = function() {
+
+        subWrapper.classList.remove("visible");
+        newTaskButtonAdd.classList.remove("visible");
+        newNoteInner.classList.remove("visible");
+    
+        noteInner.classList.add("visible");
+        mainWrapper.classList.add("visible");
+        newTaskButtonNew.classList.add("visible");
+    }
+    
+    newTaskButtonNew.onclick = function() {
+    
+        subWrapper.classList.add("visible");
+        newTaskButtonAdd.classList.add("visible");
+        newNoteInner.classList.add("visible");
+    
+        noteInner.classList.remove("visible");
+        mainWrapper.classList.remove("visible");
+        newTaskButtonNew.classList.remove("visible");
     }
 }

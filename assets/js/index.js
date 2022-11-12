@@ -348,23 +348,24 @@ function checkPriority() {
 function backAndNewButton() {
     backBotton.onclick = function() {
 
-        subWrapper.classList.remove("visible");
-        newTaskButtonAdd.classList.remove("visible");
-        newNoteInner.classList.remove("visible");
+        subWrapper.classList.add("hide");
+        newTaskButtonAdd.classList.add("hide");
+        newNoteInner.classList.add("hide");
     
-        noteInner.classList.add("visible");
-        mainWrapper.classList.add("visible");
-        newTaskButtonNew.classList.add("visible");
+        noteInner.classList.remove("hide");
+        mainWrapper.classList.remove("hide");
+        newTaskButtonNew.classList.remove("hide");
     }
     
     newTaskButtonNew.onclick = function() {
     
-        subWrapper.classList.add("visible");
-        newTaskButtonAdd.classList.add("visible");
-        newNoteInner.classList.add("visible");
+        subWrapper.classList.remove("hide");
+        newTaskButtonAdd.classList.remove("hide");
+        newNoteInner.classList.remove("hide");
     
-        noteInner.classList.remove("visible");
-        mainWrapper.classList.remove("visible");
-        newTaskButtonNew.classList.remove("visible");
+        noteInner.classList.add("hide");
+        mainWrapper.classList.add("hide");
+        newTaskButtonNew.classList.add("hide");
     }
+    saveToLocalstorage()
 }

@@ -57,20 +57,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .note__inner {
-    display: none;
-}
-
-.note__inner.visible {
     display: block;
     justify-content: center;
     text-align: center;
 }
 
 .newNote__inner {
-    display: none;
-}
-
-.newNote__inner.visible {
     display: block;
     display: flex;
     align-items: center;
@@ -106,21 +98,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .mainWrapper {
-    display: none;
     position: relative;
-    padding-bottom: 120px;
-}
-
-.mainWrapper.visible {
-    display: block;
-}
-
-.subWrapper {
-    display: none;
-}
-
-.subWrapper.visible {
-    display: block;
     padding-bottom: 120px;
 }
 
@@ -395,7 +373,6 @@ background-color: var(--green);
 }
 
 .newTaskButton {
-    display: none;
     border: 0;
     min-width: 122px;
     min-height: 54px;
@@ -426,9 +403,6 @@ background-color: var(--green);
     color: var(--white);
 }
 
-.newTaskButton.visible {
-    display: block;
-}
 
 /* input */
 

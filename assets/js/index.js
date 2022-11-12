@@ -54,25 +54,50 @@ const taskListComplete = document.querySelector('#taskListComplete');
 const taskItemFaq = document.querySelector('#faq');
 
 
-//  dragAndDrop
-
-
 // Сохранение задач
 
 let taskMemory = [];
 
+if(localStorage.getItem('taskMemory')) {
+    console.log (JSON.parse(localStorage.getItem('taskMemory')));
+    
+    taskMemory = JSON.parse(localStorage.getItem('taskMemory'));
+}
+
+taskMemory.forEach(function(task) {
+    
+    let taskDoneClass = task.done ? "complete" : "";
+
+    const BuildHTML = function() {
+        return `<div id="${task.id}" class="task__item ${task.color} ${taskDoneClass}" draggable="true" data-item="${task.date}">
+        <h3 class="task__text">${task.text} до ${task.date}</h3>
+        <button data-action="delete" class="delButton"></button>
+        <div class="priority__inner">
+            ${timeCost(task.priority)}
+        </div>
+        </div><!-- task__item -->`;
+    }
+    
+    if(task.done) {
+        taskListComplete.insertAdjacentHTML('beforeend', BuildHTML())
+    } else {
+        taskList.insertAdjacentHTML('beforeend', BuildHTML());
+    }
+})
+
 // Добавление задачи
-taskForm.addEventListener('submit', addTask, dragAndDrop)
+taskForm.addEventListener('submit', addTask, dragAndDrop);
 
 // Удаление задачи
-taskList.addEventListener('click', deleteTask)
+taskList.addEventListener('click', deleteTask);
+taskListComplete.addEventListener('click', deleteTask);
 
 
 // Priority click and result
 
 middle.onclick = function() {
     taskPriorityMiddle.classList.toggle("active");
-    taskPriorityHigh.classList.remove("active")
+    taskPriorityHigh.classList.remove("active");
 }
 
 high.onclick = function() {
@@ -147,7 +172,6 @@ allButton.onclick = function() {
     
 }
 
-
 function addTask(event) {
     event.preventDefault();
 
@@ -174,64 +198,22 @@ function addTask(event) {
     }
 
     taskMemory.push(NewTask);
+    saveToLocalstorage()
+
+    let taskDoneClass = NewTask.done ? "complete" : ""; 
 
     // Строим html разметку
 
     const BuildHTML = function() {
     
-        if (checkPriorityResult == "LowTime") {
-            return `<div id="${NewTask.id}" class="task__item ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
+            return `<div id="${NewTask.id}" class="task__item ${NewTask.color} ${taskDoneClass}" draggable="true" data-item="${NewTask.date}">
             <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
             <button data-action="delete" class="delButton"></button>
             <div class="priority__inner">
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image">
-                    <use xlink:href="#priority"></use>
-                    </svg>
+                ${timeCost(checkPriorityResult)}
             </div>
-        </div><!-- task__item -->`;
-        }
-    
-        if (checkPriorityResult == "MiddleTime") {
-            return `<div id="${NewTask.id}" class="task__item ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
-            <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
-            <button data-action="delete" class="delButton"></button>
-            <div class="priority__inner">
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-            </div>
-        </div><!-- task__item -->`;
-        }
-    
-        if (checkPriorityResult == "HighTime") {
-            return `<div id="${NewTask.id}" class="task__item ${NewTask.color}" draggable="true" data-item="${NewTask.date}">
-            <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
-            <button data-action="delete" class="delButton"></button>
-            <div class="priority__inner">
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-                <svg class="priority__image active">
-                    <use xlink:href="#priority"></use>
-                    </svg>
-            </div>
-        </div><!-- task__item -->`;
-        }
+        </div><!-- task__item -->`;       
+
     }
 
     taskList.insertAdjacentHTML('beforeend', BuildHTML());
@@ -240,7 +222,6 @@ function addTask(event) {
     taskInputDate.value = "";
     taskInputText.focus();
 }
-
 
 // Удаляем задачу
 
@@ -258,6 +239,7 @@ function deleteTask(event) {
 
        parentNode.remove();
     }
+    saveToLocalstorage()
 }
 
 // drag and drop
@@ -290,7 +272,7 @@ function dragAndDrop() {
             
     }
 
-    function handlerDragend(event) {
+    function handlerDragend() {
         this.classList.remove('hide');
     }
 
@@ -315,9 +297,20 @@ function dragAndDrop() {
         
         this.append(dragItem);
         this.classList.remove('hovered');
-        dragItem.classList.toggle("complete");
-    }
 
+        const id = Number(dragItem.id);
+    
+        const task = taskMemory.find(function(task) {
+            if(task.id === id) {
+                return true;
+            }
+        })
+
+        task.done = !task.done;
+        dragItem.classList.toggle("complete");
+        saveToLocalstorage()
+
+    }
 }
 
 dragAndDrop();
@@ -325,10 +318,61 @@ dragAndDrop();
 
 // Надпись при первом перетаскивании
 
-taskListComplete.addEventListener('drop', function() {
-    console.log("hover");
+taskListComplete.addEventListener("drop", showComplete);
+taskList.addEventListener("drop", showComplete);
+window.addEventListener("load", showComplete);
 
+function showComplete () {
     if(taskListComplete.children.length > 1) {
         taskItemFaq.classList.add('hide')
+    } else if (taskListComplete.children.length <= 1) {
+        taskItemFaq.classList.remove('hide');
     }
-})
+}
+
+
+// Сохранение в localStorage
+
+function saveToLocalstorage() {
+    localStorage.setItem('taskMemory', JSON.stringify(taskMemory));
+}
+
+// Вывод занимаемого времени для задачи в форму
+
+function timeCost(value) {
+    if (value === "LowTime") {
+        return `<svg class="priority__image active">
+        <use xlink:href="#priority"></use>
+        </svg>
+    <svg class="priority__image">
+        <use xlink:href="#priority"></use>
+        </svg>
+    <svg class="priority__image">
+        <use xlink:href="#priority"></use>
+        </svg>`
+    }
+
+    if (value === 'MiddleTime') {
+        return `<svg class="priority__image active">
+        <use xlink:href="#priority"></use>
+        </svg>
+    <svg class="priority__image active">
+        <use xlink:href="#priority"></use>
+        </svg>
+    <svg class="priority__image">
+        <use xlink:href="#priority"></use>
+        </svg>`
+    }
+
+    if(value === "HighTime") {
+        return `<svg class="priority__image active">
+        <use xlink:href="#priority"></use>
+        </svg>
+    <svg class="priority__image active">
+        <use xlink:href="#priority"></use>
+        </svg>
+    <svg class="priority__image active">
+        <use xlink:href="#priority"></use>
+        </svg>`
+    }
+}

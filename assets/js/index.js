@@ -58,13 +58,11 @@ const taskItemFaq = document.querySelector('#faq');
 
 let taskMemory = [];
 
-if(localStorage.getItem('taskMemory')) {
-    console.log (JSON.parse(localStorage.getItem('taskMemory')));
-    
+if (localStorage.getItem('taskMemory')) {   
     taskMemory = JSON.parse(localStorage.getItem('taskMemory'));
+    taskMemory.forEach( (task) => renderTask(task) );
 }
 
-taskMemory.forEach( (task) => renderTask(task) );
 
 // Добавление задачи
 taskForm.addEventListener('submit', addTask, dragAndDrop);
@@ -96,6 +94,22 @@ todayButton.onclick = function() {
     tomorrowButton.classList.remove("active");
     allButton.classList.remove("active");
 
+    sortItems.forEach((dateItem) => {
+        const dateItemPropery = new Date (dateItem.dataset.item);
+        const today = new Date;
+        const day = today.getDate();
+        const month = today.getMonth() + 1;
+        const year = today.getFullYear() % 100;
+        console.log(day, month, year);
+
+        if(dateItemPropery === today) {
+            dateItem.classList.remove('sortHide');
+        } else {
+            dateItem.classList.add('sortHide')
+        }
+    })
+
+
 }
 
 tomorrowButton.onclick = function() {
@@ -103,6 +117,18 @@ tomorrowButton.onclick = function() {
     tomorrowButton.classList.add("active");
     todayButton.classList.remove("active");
     allButton.classList.remove("active");
+
+    sortItems.forEach((dateItem) => {
+        const dateItemPropery = new Date (dateItem.dataset.item);
+        const today = new Date;
+
+        if(dateItemPropery > today) {
+            dateItem.classList.remove('sortHide');
+        } else {
+            dateItem.classList.add('sortHide')
+        }
+    })
+
 }
 
 allButton.onclick = function() {
@@ -110,7 +136,10 @@ allButton.onclick = function() {
     allButton.classList.add("active");
     tomorrowButton.classList.remove("active");
     todayButton.classList.remove("active");
-    
+
+    sortItems.forEach((dateItem) => {
+        dateItem.classList.remove('sortHide');
+    })
 }
 
 function addTask(event) {
@@ -243,7 +272,6 @@ function showComplete () {
     }
 }
 
-
 // Сохранение в localStorage
 
 function saveToLocalstorage() {
@@ -330,7 +358,6 @@ function backAndNewButton() {
     saveToLocalstorage()
 }
 
-
 function renderTask(task) {
     let taskDoneClass = task.done ? "complete" : "";
 
@@ -349,4 +376,16 @@ function renderTask(task) {
     } else {
         taskList.insertAdjacentHTML('beforeend', BuildHTML());
     }
+}
+
+
+const sortItems = document.querySelectorAll('.task__item');
+
+function filter() {
+    sortItems.forEach((dateItem) => {
+        const dateItemPropery = dateItem.dataset.item;
+        if(dateItemPropery === "2022-11-13") {
+            dateItem.classList.add('hide');
+        }
+    })
 }

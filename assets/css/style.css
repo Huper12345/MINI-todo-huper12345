@@ -259,6 +259,10 @@ background-color: var(--green);
     display: none;
 }
 
+.sortHide {
+    display: none;
+}
+
 .hovered {
     background-color: var(--greenTask);
 }

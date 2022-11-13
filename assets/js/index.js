@@ -64,26 +64,7 @@ if(localStorage.getItem('taskMemory')) {
     taskMemory = JSON.parse(localStorage.getItem('taskMemory'));
 }
 
-taskMemory.forEach(function(task) {
-    
-    let taskDoneClass = task.done ? "complete" : "";
-
-    const BuildHTML = function() {
-        return `<div id="${task.id}" class="task__item ${task.color} ${taskDoneClass}" draggable="true" data-item="${task.date}">
-        <h3 class="task__text">${task.text} до ${task.date}</h3>
-        <button data-action="delete" class="delButton"></button>
-        <div class="priority__inner">
-            ${timeCost(task.priority)}
-        </div>
-        </div><!-- task__item -->`;
-    }
-    
-    if(task.done) {
-        taskListComplete.insertAdjacentHTML('beforeend', BuildHTML())
-    } else {
-        taskList.insertAdjacentHTML('beforeend', BuildHTML());
-    }
-})
+taskMemory.forEach( (task) => renderTask(task) );
 
 // Добавление задачи
 taskForm.addEventListener('submit', addTask, dragAndDrop);
@@ -135,8 +116,6 @@ allButton.onclick = function() {
 function addTask(event) {
     event.preventDefault();
 
-    // Получаем данные
-
     const taskInputTextResult = taskInputText.value;
     
     const taskInputDateResult = taskInputDate.value;
@@ -145,7 +124,6 @@ function addTask(event) {
 
     const checkPriorityResult = checkPriority();
 
-// Обьект для задачи
     const NewTask = {
         id: Date.now(),
         text: taskInputTextResult,
@@ -156,36 +134,19 @@ function addTask(event) {
     }
 
     taskMemory.push(NewTask);
-    saveToLocalstorage()
+    saveToLocalstorage();
 
-    let taskDoneClass = NewTask.done ? "complete" : ""; 
-
-    // Строим html разметку
-
-    const BuildHTML = function() {
-        return `<div id="${NewTask.id}" class="task__item ${NewTask.color} ${taskDoneClass}" draggable="true" data-item="${NewTask.date}">
-        <h3 class="task__text">${NewTask.text} до ${NewTask.date}</h3>
-        <button data-action="delete" class="delButton"></button>
-        <div class="priority__inner">
-            ${timeCost(checkPriorityResult)}
-        </div>
-    </div><!-- task__item -->`;       
-    }
-
-    taskList.insertAdjacentHTML('beforeend', BuildHTML());
+    renderTask(NewTask);
     taskInputText.value = "";
     taskInputDate.value = "";
     taskInputText.focus();
 }
-
-// Удаляем задачу
 
 function deleteTask(event) {
   
     if(event.target.dataset.action === 'delete') {
        const parentNode = event.target.closest('.task__item');
        
-    // Определяем id задачи
        const ParNoneId = Number(parentNode.id);
        
        const index = taskMemory.findIndex((task) => task.id === ParNoneId);
@@ -199,11 +160,11 @@ function deleteTask(event) {
 
 // drag and drop
 
-const dragItems = document.querySelectorAll('.task__item');
-
-const dropZones = document.querySelectorAll('.taskList__task');
-
 function dragAndDrop() {
+
+    const dragItems = document.querySelectorAll('.task__item');
+
+    const dropZones = document.querySelectorAll('.taskList__task');
 
     dragItems.forEach(dragItem => {
         dragItem.addEventListener('dragstart', handlerDragstart);
@@ -255,11 +216,7 @@ function dragAndDrop() {
 
         const id = Number(dragItem.id);
     
-        const task = taskMemory.find(function(task) {
-            if(task.id === id) {
-                return true;
-            }
-        })
+        const task = taskMemory.find( (task) => task.id === id);
 
         task.done = !task.done;
         dragItem.classList.toggle("complete");
@@ -269,6 +226,8 @@ function dragAndDrop() {
 }
 
 dragAndDrop();
+
+
 
 // Надпись при первом перетаскивании
 
@@ -355,6 +314,7 @@ function backAndNewButton() {
         noteInner.classList.remove("hide");
         mainWrapper.classList.remove("hide");
         newTaskButtonNew.classList.remove("hide");
+        location.reload();
     }
     
     newTaskButtonNew.onclick = function() {
@@ -368,4 +328,25 @@ function backAndNewButton() {
         newTaskButtonNew.classList.add("hide");
     }
     saveToLocalstorage()
+}
+
+
+function renderTask(task) {
+    let taskDoneClass = task.done ? "complete" : "";
+
+    const BuildHTML = function() {
+        return `<div id="${task.id}" class="task__item ${task.color} ${taskDoneClass}" draggable="true" data-item="${task.date}">
+        <h3 class="task__text">${task.text} до ${task.date}</h3>
+        <button data-action="delete" class="delButton"></button>
+        <div class="priority__inner">
+            ${timeCost(task.priority)}
+        </div>
+        </div><!-- task__item -->`;
+    }
+    
+    if(task.done) {
+        taskListComplete.insertAdjacentHTML('beforeend', BuildHTML())
+    } else {
+        taskList.insertAdjacentHTML('beforeend', BuildHTML());
+    }
 }

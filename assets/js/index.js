@@ -95,14 +95,18 @@ todayButton.onclick = function() {
     allButton.classList.remove("active");
 
     sortItems.forEach((dateItem) => {
-        const dateItemPropery = new Date (dateItem.dataset.item);
+        
+        const dateItemPropery = dateItem.dataset.item;
         const today = new Date;
         const day = today.getDate();
         const month = today.getMonth() + 1;
-        const year = today.getFullYear() % 100;
-        console.log(day, month, year);
+        const year = today.getFullYear();
 
-        if(dateItemPropery === today) {
+        const dateResult = `${year}-${month}-${day}`
+        
+        console.log(dateResult);
+
+        if(dateItemPropery === dateResult) {
             dateItem.classList.remove('sortHide');
         } else {
             dateItem.classList.add('sortHide')

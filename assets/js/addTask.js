@@ -3,6 +3,7 @@
 import { timeCost, checkPriority } from "./timeCostAndCheckPriority"
 import { dragAndDrop } from "./dragAndDrop";
 import { deleteTask } from "./deleteTask";
+import { saveToLocalstorage } from "./saveToLocalStorage";
 
 export {addTask, renderTask, taskForm, taskInputText, taskListComplete, taskList, taskInputDate, taskInputRadioYellow, taskInputRadioblue, taskInputRadioRed, taskPriorityLow, taskPriorityMiddle, taskPriorityHigh, taskMemory, }
 
@@ -87,8 +88,4 @@ function renderTask(task) {
     } else {
         taskList.insertAdjacentHTML('beforeend', BuildHTML());
     }
-}
-
-function saveToLocalstorage() {
-    localStorage.setItem('taskMemory', JSON.stringify(taskMemory));
 }

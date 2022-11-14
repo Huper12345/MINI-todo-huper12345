@@ -97,23 +97,14 @@ todayButton.onclick = function() {
     sortItems.forEach((dateItem) => {
         
         const dateItemPropery = dateItem.dataset.item;
-        const today = new Date;
-        const day = today.getDate();
-        const month = today.getMonth() + 1;
-        const year = today.getFullYear();
-
-        const dateResult = `${year}-${month}-${day}`
-        
-        console.log(dateResult);
-
-        if(dateItemPropery === dateResult) {
+     
+        if(dateItemPropery === nowDate()) {
             dateItem.classList.remove('sortHide');
         } else {
             dateItem.classList.add('sortHide')
+
         }
     })
-
-
 }
 
 tomorrowButton.onclick = function() {
@@ -123,10 +114,10 @@ tomorrowButton.onclick = function() {
     allButton.classList.remove("active");
 
     sortItems.forEach((dateItem) => {
-        const dateItemPropery = new Date (dateItem.dataset.item);
-        const today = new Date;
-
-        if(dateItemPropery > today) {
+        const dateItemPropery = new Date(dateItem.dataset.item);
+        const dateTomorrow = calcDate(dateItemPropery);
+    
+        if(dateTomorrow >= tomorrowDate()) {
             dateItem.classList.remove('sortHide');
         } else {
             dateItem.classList.add('sortHide')
@@ -260,8 +251,6 @@ function dragAndDrop() {
 
 dragAndDrop();
 
-
-
 // Надпись при первом перетаскивании
 
 taskListComplete.addEventListener("drop", showComplete);
@@ -385,11 +374,36 @@ function renderTask(task) {
 
 const sortItems = document.querySelectorAll('.task__item');
 
-function filter() {
-    sortItems.forEach((dateItem) => {
-        const dateItemPropery = dateItem.dataset.item;
-        if(dateItemPropery === "2022-11-13") {
-            dateItem.classList.add('hide');
-        }
-    })
+
+// Функции фильтра
+function nowDate() {
+    const today = new Date;
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+
+    const dateResult = `${year}-${month}-${day}`
+
+    return dateResult;
+}
+
+function calcDate(date) {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    const dateResult = `${year}-${month}-${day}`
+
+    return dateResult;
+}
+
+function tomorrowDate() {
+    const today = new Date;
+    const day = today.getDate() + 1;
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+
+    const dateResult = `${year}-${month}-${day}`
+
+    return dateResult;
 }

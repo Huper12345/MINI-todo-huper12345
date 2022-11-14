@@ -96,9 +96,10 @@ todayButton.onclick = function() {
 
     sortItems.forEach((dateItem) => {
         
-        const dateItemPropery = dateItem.dataset.item;
-     
-        if(dateItemPropery === nowDate()) {
+        const dateItemProperty = new Date (dateItem.dataset.item);
+        const dateItemPropertyValue = calcDate(dateItemProperty);
+    
+        if(dateItemPropertyValue === nowDate()) {
             dateItem.classList.remove('sortHide');
         } else {
             dateItem.classList.add('sortHide')
@@ -117,7 +118,7 @@ tomorrowButton.onclick = function() {
         const dateItemPropery = new Date(dateItem.dataset.item);
         const dateTomorrow = calcDate(dateItemPropery);
     
-        if(dateTomorrow >= tomorrowDate()) {
+        if(dateTomorrow > nowDate() && dateTomorrow <= afterTomorrowDate()) {
             dateItem.classList.remove('sortHide');
         } else {
             dateItem.classList.add('sortHide')
@@ -251,6 +252,8 @@ function dragAndDrop() {
 
 dragAndDrop();
 
+
+
 // Надпись при первом перетаскивании
 
 taskListComplete.addEventListener("drop", showComplete);
@@ -374,17 +377,15 @@ function renderTask(task) {
 
 const sortItems = document.querySelectorAll('.task__item');
 
-
-// Функции фильтра
 function nowDate() {
     const today = new Date;
     const day = today.getDate();
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
 
-    const dateResult = `${year}-${month}-${day}`
+    const dateResult = year + month + day
 
-    return dateResult;
+    return Number(dateResult);
 }
 
 function calcDate(date) {
@@ -392,18 +393,18 @@ function calcDate(date) {
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
 
-    const dateResult = `${year}-${month}-${day}`
+    const dateResult = year + month + day
 
-    return dateResult;
+    return Number(dateResult);
 }
 
-function tomorrowDate() {
+function afterTomorrowDate() {
     const today = new Date;
     const day = today.getDate() + 1;
     const month = today.getMonth() + 1;
     const year = today.getFullYear();
 
-    const dateResult = `${year}-${month}-${day}`
+    const dateResult = year + month + day
 
-    return dateResult;
+    return Number(dateResult);
 }

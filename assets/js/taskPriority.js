@@ -1,13 +1,15 @@
 "use strict";
 
-export {middle, high};
+export {middle1, high1};
+import { taskPriorityHigh } from "./addTask";
+import { taskPriorityMiddle } from "./addTask";
 
-middle.onclick = function() {
+const middle1 = middle.onclick = function() {
     taskPriorityMiddle.classList.toggle("active");
     taskPriorityHigh.classList.remove("active");
 }
 
-high.onclick = function() {
+const high1 = high.onclick = function() {
     taskPriorityHigh.classList.toggle("active");
     taskPriorityMiddle.classList.add("active");
 }

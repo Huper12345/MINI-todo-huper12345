@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Huper12345/MINI-todo-huper12345/issues"
   },
-  "homepage": "https://github.com/Huper12345/MINI-todo-huper12345#readme"
+  "homepage": "https://github.com/Huper12345/MINI-todo-huper12345#readme",
+  "dependencies": {
+    "vite": "^3.2.3"
+  }
 }

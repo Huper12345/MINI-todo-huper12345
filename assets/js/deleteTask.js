@@ -2,6 +2,7 @@
 
 export {deleteTask}
 import { saveToLocalstorage } from "./saveToLocalStorage";
+import {taskMemory} from "./addTask"
 
 function deleteTask(event) {
   

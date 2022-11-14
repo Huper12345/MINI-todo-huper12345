@@ -1,6 +1,8 @@
 "use strict";
 
 export {timeCost, checkPriority}
+import {taskPriorityHigh} from "./addTask"
+import {taskPriorityMiddle} from "./addTask"
 
 function timeCost(value) {
     if (value === "LowTime") {

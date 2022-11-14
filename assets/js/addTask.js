@@ -1,9 +1,10 @@
 "use strict";
 
-import {saveToLocalstorage} from "./saveToLocalStorage"
-import {timeCost} from "./timeCostAndCheckPriority"
+import { timeCost, checkPriority } from "./timeCostAndCheckPriority"
+import { dragAndDrop } from "./dragAndDrop";
+import { deleteTask } from "./deleteTask";
 
-export {addTask, renderTask, taskForm, taskInputText, taskInputDate, taskInputRadioYellow, taskInputRadioblue, taskInputRadioRed, taskPriorityLow, taskPriorityMiddle, taskPriorityHigh, taskMemory, }
+export {addTask, renderTask, taskForm, taskInputText, taskListComplete, taskList, taskInputDate, taskInputRadioYellow, taskInputRadioblue, taskInputRadioRed, taskPriorityLow, taskPriorityMiddle, taskPriorityHigh, taskMemory, }
 
 const taskForm = document.querySelector('#taskForm');
 
@@ -24,12 +25,8 @@ const taskPriorityMiddle = document.querySelector('#taskTimeMiddle');
 const taskPriorityHigh = document.querySelector('#taskTimeHigh');
 
 const taskList = document.querySelector("#taskList");
-const taskItem = document.querySelector('.task__item');
 const taskListComplete = document.querySelector('#taskListComplete');
-const taskItemFaq = document.querySelector('#faq');
 
-
-// Сохранение задач
 
 let taskMemory = [];
 
@@ -38,11 +35,7 @@ if (localStorage.getItem('taskMemory')) {
     taskMemory.forEach( (task) => renderTask(task) );
 }
 
-
-// Добавление задачи
 taskForm.addEventListener('submit', addTask, dragAndDrop);
-
-// Удаление задачи
 taskList.addEventListener('click', deleteTask);
 taskListComplete.addEventListener('click', deleteTask);
 
@@ -94,4 +87,8 @@ function renderTask(task) {
     } else {
         taskList.insertAdjacentHTML('beforeend', BuildHTML());
     }
+}
+
+function saveToLocalstorage() {
+    localStorage.setItem('taskMemory', JSON.stringify(taskMemory));
 }

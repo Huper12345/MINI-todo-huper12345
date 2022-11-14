@@ -1,7 +1,8 @@
 "use strict";
 
-export {dragAndDrop}
+export { dragAndDrop }
 import { saveToLocalstorage } from "./saveToLocalStorage";
+import { taskMemory } from "./addTask"
 
 function dragAndDrop() {
 

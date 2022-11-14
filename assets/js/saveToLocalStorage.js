@@ -1,7 +1,7 @@
 "use strict";
 
-export {saveToLocalstorage}
+import { taskMemory } from "./addTask";
 
-function saveToLocalstorage() {
+export function saveToLocalstorage() {
     localStorage.setItem('taskMemory', JSON.stringify(taskMemory));
 }

@@ -1,0 +1,558 @@
+
+/* Common properties */
+
+:root {
+    --white: #fff;
+    --black: #181818;
+    --blackLight: #1E1E1E;
+    --blue: #78ACD5;
+    --red: #FF2460;
+    --yellow: #FCF302;
+    --green: #2b302e;
+    --blueLight: rgba(78, 223, 252, 1);
+    --greenTask: #035836;
+}
+
+body {
+    font-family: 'Product Sans';
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--white);
+    line-height: 19px;
+    background-color: var(--black, #181818);
+    margin: 0;
+
+    overflow-x: hidden;
+    min-height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 856px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* header */
+
+.header__title {
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 24px;
+    line-height: 29px;
+    margin: 20.5px 0;
+}
+
+.note__inner {
+    display: block;
+    justify-content: center;
+    text-align: center;
+}
+
+.newNote__inner {
+    display: block;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+}
+
+.backBotton {
+    position: absolute;
+    left: 5%;
+    top: 35%;
+    transform: translateX(-35%);
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.backBotton:hover .backBottonImg {
+    fill: var(--white);
+}
+
+.backBottonImg {
+    width: 20px;
+    height: 20px;
+    fill: var(--blue);
+}
+
+/* wrappers */
+
+.pageWrapper {
+    position: relative;
+    min-height: 80vh;
+}
+
+.mainWrapper {
+    position: relative;
+    padding-bottom: 120px;
+}
+
+
+/* dateSort */
+
+.dateSort__inner {
+    margin: 0 25px;
+}
+
+.dateSort__button {
+    color: var(--white);
+    border: 0;
+    border-radius: 15px;
+
+    cursor: pointer;
+    background: none;
+    background-color: var(--blackLight);
+    padding: 5px 15px;
+    margin: 20px 10px 20px 0;
+}
+
+.dateSort__button:last-child {
+    margin-right: 0;
+}
+
+.dateSort__button.active {
+    background-color: var(--blue);
+}
+
+.dateSort__button:hover {
+    background-color: var(--blue);
+    transition: 0.1s;
+}
+
+.dateSort__button:hover .button__text {
+    color: var(--black);
+    transition: 0.1s;
+}
+
+.button__text {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14.56px;
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+.button__text.active {
+    color: var(--black);
+}
+
+.delButton {
+    display: none;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+    transition: 0.2s;
+    position: absolute;
+    right: 10%;
+    z-index: 1000;
+    background: none;
+    border: none;
+
+}
+
+.delButton::before,
+.delButton::after {
+	content: '';
+	position: absolute;
+	top: 10px;
+	display: block;
+	width: 40px;
+	height: 3px;
+    background: var(--red);
+}
+
+.delButton::before {
+	transform: rotate(45deg);
+}
+
+.delButton::after {
+	transform: rotate(-45deg);
+}
+
+/* taskList*/
+
+.taskList__inner {
+    text-align: center;
+    padding: 10px 0 0 0;
+}
+
+.taskList__title.complete {
+    cursor: pointer;
+}
+
+.taskList__title {
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--white);
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 20px 0 20px 0;
+}
+
+.taskList__title.newTask {
+    font-weight: 700;
+    text-transform: none;
+}
+
+
+/* datesort__inner */
+
+.task__item {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 50px;
+    background-color: var(--blackLight);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin: 10px 0;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.task__item.red::before {
+    background-color: var(--red);
+}
+.task__item.yellow::before {
+    background-color: var(--yellow);
+}
+.task__item.blue::before {
+    background-color: var(--blue);
+}
+
+.task__item::before {
+    content: "";
+    display: block;
+    width: 2px;
+    height: 70%;
+    position: absolute;
+    left: 15px;
+}
+
+.task__item:hover {
+background-color: var(--green);
+}
+
+.task__item:hover .delButton {
+    display: block;
+    transition: 0.2s;
+}
+
+.task__item:hover .priority__inner {
+    opacity: 0.1;
+    transition: 0.2s;
+}
+
+.hide {
+    display: none;
+}
+
+.sortHide {
+    display: none;
+}
+
+.hovered {
+    background-color: var(--greenTask);
+}
+
+.task__item.faq {
+    background-color: var(--greenTask);
+    text-transform: uppercase;
+    text-align: center;
+    justify-content: center;
+}
+
+
+.task__text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    margin-left: 27px;
+
+}
+
+/* taskList__task */
+
+.taskList__task {
+    min-height: 100px;
+}
+
+/* Complete Task */
+.task__item.complete {
+    background-color: var(--green);
+    opacity: 0.5;
+}
+
+
+/* priority */
+
+.priority__inner {
+    margin: 0 18.35px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 57px;
+}
+
+.priority__inner--checkBox {
+    margin: 0 88px 0 20px;
+    min-width: 78px;
+}
+
+.priority__inner--Radio {
+    margin: 0 70px 0 20px;
+}
+
+.priority__image {
+    display: block;
+    width: 10.31px;
+    height: 14.17px;
+    fill: var(--white);
+    fill-opacity: 0.1;
+    cursor: pointer;
+}
+
+.priority__image.active {
+    fill: var(--blue);
+    fill-opacity: 1;
+}
+
+.priority__image:hover {
+    fill: var(--blue);
+    fill-opacity: 1;
+}
+
+/* Complete tasks block */
+
+.cleanButton {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 50px;
+    background-color: var(--blackLight);
+    border-radius: 10px;
+    align-items: center;
+    position: relative;
+    margin: 10px 0;
+    cursor: pointer;
+    
+    border: 0;
+    color: var(--white);
+    width: 100%;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    transition: 0.2s;
+}
+
+.cleanButton:hover {
+    background-color: var(--red);
+    opacity: 0.8;
+}
+
+/* footer */
+
+.footer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.footer__inner {
+    display: flex;
+    justify-content: center;
+}
+
+.newTaskButton {
+    border: 0;
+    min-width: 122px;
+    min-height: 54px;
+    border-radius: 10px;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    transition: 0.1s;
+    color: var(--black);
+
+    margin: 42px;
+    
+    background:
+    radial-gradient(80.74% 163.82% at -1.23% -17.59%, #5AF8FE 0%, rgba(235, 81, 158, 0.25) 100%),
+    radial-gradient(49.18% 100.93% at 77.87% 111.11%, rgba(137, 59, 254, 0.85) 0%, rgba(128, 187, 219, 0.2125) 100%),
+    radial-gradient(60.25% 122.24% at 103.28% -41.67%, #FDC2B0 0%, rgba(235, 81, 158, 0.25) 100%);
+
+    transition: 0.3s;
+}
+
+.newTaskButton:hover {
+    background:
+    radial-gradient(80.74% 163.82% at -1.23% -17.59%, #b128ec 0%, rgba(118, 38, 180, 0.25) 100%),
+    radial-gradient(49.18% 100.93% at 77.87% 111.11%, rgba(59, 150, 254, 0.85) 0%, rgba(216, 58, 41, 0.213) 100%),
+    radial-gradient(60.25% 122.24% at 103.28% -41.67%, #1bd8bc 0%, rgba(235, 145, 81, 0.25) 100%);
+
+    color: var(--white);
+}
+
+
+/* input */
+
+.input__item {
+    display: flex;
+    min-height: 50px;
+    width: 100%;
+    background-color: var(--blackLight);
+    border: 0;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin: 10px 0;
+    padding: 0 15px;
+}
+
+.task__input {
+    min-width: 50px;
+    font-family: 'Product Sans';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.41px;
+    background: none;
+    border: 0;
+    outline: 0;
+    color: var(--white);
+    text-align: center;
+    padding: 0 30px;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.task__input.date {
+    margin-right: 6%;
+}
+
+::-webkit-input-placeholder {
+    font-family: 'Product Sans';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.41px;
+    color: var(--white);
+}
+
+/* Input radio style */
+
+.priority__radio[type="radio"]:checked, 
+.priority__radio[type="radio"]:not(:checked) 
+{
+    position: absolute;
+    left: -9999px;
+}
+
+ 
+.priority__radio[type="radio"]:checked + label, 
+.priority__radio[type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    line-height: 20px;
+    cursor: pointer;
+    margin-left: 13px;
+}
+
+/* Colors Radio */
+.priority__radio[type="radio"]:checked + label:before, 
+.priority__radio[type="radio"]:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--blue);
+}
+
+
+.priority__radio.yellow[type="radio"]:checked + label:before, 
+.priority__radio.yellow[type="radio"]:not(:checked) + label:before {
+    background-color: var(--yellow); 
+}
+
+.priority__radio.red[type="radio"]:checked + label:before, 
+.priority__radio.red[type="radio"]:not(:checked) + label:before {
+    background-color: var(--red); 
+}
+
+/* Colors Radio */
+
+.priority__radio[type="radio"]:checked + label:before, 
+.priority__radio[type="radio"]:not(:checked) + label:before {
+    border-radius: 100%;
+}
+
+.priority__radio[type="radio"]:checked + label:after, 
+.priority__radio[type="radio"]:not(:checked) + label:after {
+    content: "";
+    position: absolute;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+
+.priority__radio[type="radio"]:checked + label:after, 
+.priority__radio[type="radio"]:not(:checked) + label:after {
+    left: 0px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 3.5px solid var(--white);
+}
+
+.priority__radio[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+}
+
+.priority__radio[type="radio"]:checked + label:after {
+    opacity: 1;
+}
+
+/* Fonts */
+
+/* Product Sans regular */
+@font-face {
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/ProductSans-Regular.woff") format("woff"); 
+    font-display: swap;
+    }
+
+/* Product Sans regular */
+@font-face {
+    font-family: 'Product Sans';
+    font-style: bold;
+    font-weight: 700;
+    src: url("../fonts/Product-Sans-Bold.woff") format("woff");
+    font-display: swap; 
+    }
+
